@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import NavBar from './components/NavBar'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import "@fontsource/poppins";
 
 import './output.css'
 import HeroSection from './components/HeroSection'

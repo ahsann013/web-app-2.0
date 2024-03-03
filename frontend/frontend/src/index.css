@@ -1,9 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body {
+  font-family: 'Poppins';
+  font-size: large;
+
+}
+
  
 @layer base {
   :root {
+
+    font-family: 'Poppins';
+    font-size: large;
+    font-weight: 500;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
