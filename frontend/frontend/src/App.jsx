@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 import LoginPage from './Pages/LoginPage'
 
 import Dashboard from './components/DashboardMain'
-import Map from './components/Map';
+
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
           <Route path='/Vehicle' element={<Vehicle />} />
           <Route path='/Login' element={<LoginPage />} />
           <Route path='/Dashboard' element={<Dashboard />} />
-          <Route path='/Map' element={<Map />} />
+        
         </Routes>
       </BrowserRouter>
 
