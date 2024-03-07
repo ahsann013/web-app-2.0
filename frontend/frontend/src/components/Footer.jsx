@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-      <div className='grid min-h-0  absolute w-screen'>
+      <div className='grid min-h-0 '>
     
         <footer className="grid-row bg-teal-500 mt-auto text-white font-roboto " >
             <div className="container mx-auto text-center">
