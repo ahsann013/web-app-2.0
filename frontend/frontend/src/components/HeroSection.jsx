@@ -3,7 +3,7 @@ import Footer from './Footer';
 
 const HeroSection = () => {
     return (
-        <div className="  h-full top-0  bg-gray-800 text-white py-16" >
+        <div className="  h-screen top-0  bg-gray-800 text-white py-16" >
             <div className="container mx-auto text-center">
                 <h1 className="text-4xl py-24 font-bold mb-4">Welcome to Your Website</h1>
                 <p className="text-lg mb-16">Discover amazing content and explore the possibilities.</p>

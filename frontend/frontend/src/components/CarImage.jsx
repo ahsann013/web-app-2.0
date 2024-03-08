@@ -4,7 +4,7 @@ const carimage = () => {
   return (
     <div className=''>
 
-<img src="./src/assets/carhero.jpg" alt="carimage" style={{width:'100%'}} />
+<img src="./src/assets/carhero.jpg" alt="carimage" className='h-screen w-screen' />
 
     </div>
   )
