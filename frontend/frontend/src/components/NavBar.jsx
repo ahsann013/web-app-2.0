@@ -6,7 +6,7 @@ import Footer from './Footer';
 const NavLink = ({ href, children }) => (
     <a
         href={href}
-        className="block lg:inline-block lg:mt-0 font-bold text-teal-200 text hover:text-white hover:bg-teal-400 p-3 transition duration-300 ease-out hover:ease-in rounded-3xl mr-4 hover:shadow-lg"
+        className="block lg:inline-block lg:mt-0 font-bold text-white text hover:text-white hover:bg-teal-400 p-3 transition duration-300 ease-out hover:ease-in rounded-3xl mr-4 hover:shadow-lg"
     >
         {children}
     </a>
