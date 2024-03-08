@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import CarImage from './CarImage';
 const NavLink = ({ href, children }) => (
   <a
       href={href}
@@ -46,7 +46,7 @@ const Login = () => {
         </form>
       </div>
       <div className="w-4/5 bg-gray-200 flex items-center justify-center">
-        {/* Image goes here */}
+<CarImage/>
       </div>
     </div>
   );
