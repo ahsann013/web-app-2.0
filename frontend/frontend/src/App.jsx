@@ -1,6 +1,6 @@
 // Desc: Main App file
 
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route} from 'react-router-dom'
 import "@fontsource/poppins";
 
 import './output.css'
@@ -11,6 +11,11 @@ import Homepage from './Pages/Homepage'
 import LoginPage from './Pages/LoginPage'
 
 import Dashboard from './components/DashboardMain'
+import MapContainer from './components/MapContainer';
+import RideHistory from './components/RideHistory';
+import Bikes from './components/Bikes';
+import Home from './components/Home';
+import UserData from './components/UserData';
 
 
 function App() {
@@ -18,18 +23,23 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+     
 
 
         <Routes>
-          <Route path='/' element={<Homepage />} />
-          <Route path='/ContactUs' element={<Contact />} />
-          <Route path='/Vehicle' element={<Vehicle />} />
-          <Route path='/Login' element={<LoginPage />} />
-          <Route path='/Dashboard' element={<Dashboard />} />
-        
+          <Route exact path='/' element={<Homepage />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/vehicle' element={<Vehicle />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/history' element={<RideHistory/>} />
+          <Route path='/bikes' element={<Bikes/>} />
+          <Route path='/livetracker' element={<MapContainer/>} />
+          <Route path='/users' element={<UserData/>} />
+          <Route path='/home' element={<Home/>} />
+
         </Routes>
-      </BrowserRouter>
+    
 
 
     </>

@@ -1,11 +1,21 @@
 import React from 'react';
+import DashboardContainer from '../components/DashboardContainer';
+import SideBar from './SideBar';
+import { Person2Rounded } from '@mui/icons-material';
+import Vehicles from './Vehicles';
 
 const Dashboard = () => {
   return (
-    <div className="flex items-center h-screen justify-center py-32 bg-teal-100">
+<>
+
+     <DashboardContainer> 
+sas
     
-     
-    </div>
+     </DashboardContainer>
+
+     </>
+    
+    
   );
 };
 
