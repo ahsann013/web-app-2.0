@@ -51,7 +51,7 @@ const Sidebar = () => {
             ))}
           </List>
           {/* Signout NavLink */}
-          <NavLink to="/signout" className="text-white fixed w-64 hover:bg-blue-500 bottom-4">
+          <NavLink to="/login" className="text-white fixed w-64 hover:bg-blue-500 bottom-4">
             <ListItem button className="hover: hover:bg-blue-500 ">
               <ListItemIcon><LogoutIcon className='text-red-600' /></ListItemIcon>
               <ListItemText primary="Sign out" />
