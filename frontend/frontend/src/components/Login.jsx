@@ -34,7 +34,7 @@ const Login = () => {
           <a href="#" className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800">Forgot Password?</a>
         </div>
         <div className="flex items-center justify-center">
-          <NavLink to = '/Dashboard' className="text-lg px-4 transition duration-400 ease-out hover:ease-out py-3 mx-4 leading-none border rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-teal-400 mt-2 lg:mt-0"
+          <NavLink to = '/dashboard' className="text-lg px-4 transition duration-400 ease-out hover:ease-out py-3 mx-4 leading-none border rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-teal-400 mt-2 lg:mt-0"
           >Login</NavLink>
         </div>
       </form>
