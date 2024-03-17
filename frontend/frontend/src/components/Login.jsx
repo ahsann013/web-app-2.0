@@ -19,7 +19,7 @@ const Login = () => {
     <div className="flex h-screen">
       <div className="w-1/4 bg-black flex items-center justify-center">
         <div className='top-3 left-4 absolute'>
-          <NavLink to='/' className="text-md my-2  transition duration-400 p-1 flex mt-1 ease-out hover:ease-out border rounded-3xl text-white border-white hover:border-transparent hover:text-white hover:bg-teal-400 "
+          <NavLink to='/' className="text-md my-2  transition duration-400 p-1 flex mt-1 ease-out hover:ease-out border rounded-3xl text-white border-white hover:border-transparent hover:text-white hover:bg-amber-400 "
           >
             <ArrowBackIcon /></NavLink>
         </div>
