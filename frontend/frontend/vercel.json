@@ -2,12 +2,8 @@
   "rewrites": [
     {"source": "/(.*)", "destination": "/"}
   ],
-  "routes": [
-    { "handle": "filesystem" },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    }
-  ]
+  
+    "outputDirectory": "dist"
+  
 } 
 
