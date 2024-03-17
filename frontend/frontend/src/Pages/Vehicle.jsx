@@ -6,7 +6,9 @@ const Vehicle = () => {
   return (
     <>
     <NavBar/>
+    <div className='h-screen w-screen bg-amber-500 '>
     <Vehicles/>
+    </div>
     <Footer/>
     </>
   )
