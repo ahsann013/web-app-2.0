@@ -41,7 +41,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <div className="w-4/5 bg-amber-500 flex items-center justify-center">
+      <div className="w-4/5 bg-gradient-to-br from-amber-400 to-amber-800 flex items-center justify-center">
         <CarImage />
       </div>
     </div>
