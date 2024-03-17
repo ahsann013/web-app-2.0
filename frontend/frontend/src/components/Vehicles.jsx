@@ -10,11 +10,11 @@ const Vehicle = () => {
     ];
 
     return (
-        <div className="vehicle-page  bg-black p-6 ">
-            <h2 className="text-3xl font-bold mb-8">Our Vehicles</h2>
+        <div className=" bg-black p-6 ">
+            <h2 className="text-3xl font-bold  ">Our Vehicles</h2>
             <div className="flex flex-col md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {vehicles.map(vehicle => (
-                    <div key={vehicle.id} className="bg-white p-6  rounded-lg shadow-md">
+                    <div key={vehicle.id} className="bg-white p-9  rounded-lg shadow-md">
                         <h3 className="text-xl font-semibold mb-2 text-black">{vehicle.name}</h3>
                         <p className="text-gray-600 mb-2">{vehicle.type}</p>
                         <p className="text-amber-500 font-bold">{vehicle.price}</p>
