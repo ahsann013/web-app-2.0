@@ -4,7 +4,7 @@ const Footer = () => {
     return (
       <div className='grid min-h-0 '>
     
-        <footer className="grid-row bg-teal-500 mt-auto text-white font-roboto " >
+        <footer className="grid-row bg-amber-400 mt-auto text-white" >
             <div className="container mx-auto text-center">
                 <p className="text-lg mb-1">
                     &copy; {new Date().getFullYear()} GoEV. All Rights Reserved.

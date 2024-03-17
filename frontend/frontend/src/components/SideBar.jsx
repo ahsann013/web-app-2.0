@@ -26,24 +26,29 @@ const Sidebar = () => {
   ];
 
   return (
-    <div>
+    <div className="flex items-center bg-black p-2 rounded-lg">
+      <div className='text-black bg-amber-400 rounded-full'>
       <IconButton onClick={toggleDrawer(true)} className="text-white">
-        <MenuIcon className='text-white' />
+        <MenuIcon className='0' /> <div className=' pl-2 text-lg'>Menu</div>
       </IconButton>
+      </div>
+      <div className="flex-grow text-amber-400 text-2xl font-bold text-center mx-4">
+        Dashboard
+      </div>
+
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-        <div className="w-64 bg-gray-800 h-screen">
-          {/* Close icon to collapse the sidebar */}
-          <div className="text-white flex justify-between text-xl font-bold p-4  mt-2">Menu
+        <div className="w-64 bg-black h-screen">
+          <div className="text-white flex justify-between text-xl font-bold p-4 mt-2">Menu
             <div className="p-0 sticky">
               <IconButton onClick={toggleDrawer(false)} className="text-white">
-                <CloseIcon className='text-white absolute hover:bg-red-700 rounded-xl  '/>
+                <CloseIcon className='text-white absolute hover:bg-red-700 rounded-xl' />
               </IconButton>
             </div>
           </div>
           <List>
             {sidebarItems.map((item, index) => (
-              <NavLink key={index} to={item.link} className="text-white ">
-                <ListItem className="hover:bg-blue-500 p-4 mb-4"> {/* Added margin-bottom */}
+              <NavLink key={index} to={item.link} className="text-white">
+                <ListItem className="hover:bg-amber-400 p-4 mb-4 hover:text-black">
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} />
                 </ListItem>
@@ -51,8 +56,8 @@ const Sidebar = () => {
             ))}
           </List>
           {/* Signout NavLink */}
-          <NavLink to="/login" className="text-white fixed w-64 hover:bg-blue-500 bottom-4">
-            <ListItem button className="hover: hover:bg-blue-500 ">
+          <NavLink to="/login" className="text-white fixed w-64 hover:bg-red-500 bottom-4">
+            <ListItem button className="hover: hover:bg-red-500 ">
               <ListItemIcon><LogoutIcon className='text-red-600' /></ListItemIcon>
               <ListItemText primary="Sign out" />
             </ListItem>

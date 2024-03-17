@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const carimage = () => {
+const CarImage = () => {
   return (
-    <div className=''>
-
-<img src="./src/assets/carhero.jpg" alt="carimage" className='h-screen w-screen' />
-
+    <div className="flex justify-center items-center h-80 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full shadow-cl">
+      <img src="./src/assets/bike-logo.svg" alt="carimage" className="h-80 w-80 rounded-full border-4 border-white " />
     </div>
-  )
-}
+  );
+};
 
-export default carimage
+export default CarImage;
