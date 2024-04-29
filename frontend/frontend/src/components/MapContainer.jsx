@@ -1,20 +1,45 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
+import * as atlas from 'azure-maps-control';
+import 'azure-maps-control/dist/atlas.min.css';
 
-import { APIProvider, InfoWindow, Pin, Map } from '@vis.gl/react-google-maps'
-import DashboardContainer from './DashboardContainer'
-const MapContainer = () => {
-    const position = { lat: 37.7749, lng: -122.4194 }
-    const apikey = import.meta.env.REACT_APP_GOOGLE_API_KEY
-    return (
-        <DashboardContainer>
-            <APIProvider apiKey={apikey}>
+const MapContainer = ({ subscriptionKey, stations }) => {
+    const mapRef = useRef(null);
 
-                <Map zoom={9} center={position} ></Map>
+    useEffect(() => {
+        let map;
 
-            </APIProvider>
-        </DashboardContainer>
+        const loadMap = async () => {
+            map = new atlas.Map(
+                mapRef.current,
+                {
+                    authOptions: {
+                        authType: atlas.AuthenticationType.subscriptionKey,
+                        subscriptionKey: subscriptionKey,
+                    },
+                    center: [0, 0],
+                    zoom: 10,
+                    view: 'Auto',
+                }
+            );
 
-    )
-}
+            map.events.add('ready', () => {
+                stations.forEach((station) => {
+                    const marker = new atlas.HtmlMarker({
+                        color: 'DodgerBlue',
+                        text: station.name,
+                        position: station.position,
+                    });
+
+                    map.markers.add(marker);
+                });
+            });
+        };
+
+        loadMap();
+    }, [subscriptionKey,stations]);
+
+    return <div ref={mapRef} className='h-full w-full'>AzureMaps</div>;
+};
+
 
 export default MapContainer;

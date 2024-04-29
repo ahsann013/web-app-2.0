@@ -16,6 +16,7 @@ import RideHistory from './components/RideHistory';
 import Bikes from './components/Bikes';
 import Home from './components/Home';
 import UserData from './components/UserData';
+import AzureMaps from './components/MapContainer';
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
    
           <Route path='/history' element={<RideHistory/>} />
           <Route path='/bikes' element={<Bikes/>} />
-          <Route path='/livetracker' element={<MapContainer/>} />
+          <Route path='/livetracker' element={<AzureMaps/>} />
           <Route path='/users' element={<UserData/>} />
           <Route path='/home' element={<Home/>} />
 
