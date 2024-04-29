@@ -15,7 +15,7 @@ const AzureMaps = () => {
 
   return (
     <div>AzureMaps
-        <MapContainer subscriptionKey = {process.env.REACT_APP_AZURE_MAPS_SUBSCRIPTION_KEY}
+        <MapContainer subscriptionKey = {process.env.REACT_APP_AZURE_MAPS_KEY}
         stations={stations}/>
     </div>
   )

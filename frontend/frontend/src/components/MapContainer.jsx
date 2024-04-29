@@ -8,7 +8,7 @@ const MapContainer = ({ subscriptionKey, stations }) => {
     useEffect(() => {
         let map;
 
-        const loadMap = async () => {
+        const loadMap = () => {
             map = new atlas.Map(
                 mapRef.current,
                 {
@@ -33,13 +33,18 @@ const MapContainer = ({ subscriptionKey, stations }) => {
                     map.markers.add(marker);
                 });
             });
+
+
+      
         };
 
-        loadMap();
-    }, [subscriptionKey,stations]);
-
+  
+   loadMap();
+    
+   
+    }, [subscriptionKey, stations]);
+  
     return <div ref={mapRef} className='h-full w-full'>AzureMaps</div>;
 };
-
 
 export default MapContainer;
