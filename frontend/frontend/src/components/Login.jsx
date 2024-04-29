@@ -26,16 +26,16 @@ const Login = () => {
         <form className="p-10" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="emailOrUsername" className="block text-white font-md mb-2">Email or Username</label>
-            <input type="text" id="emailOrUsername" value={emailOrUsername} onChange={(e) => setEmailOrUsername(e.target.value)} className="text-black border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" />
+            <input placeholder='example@gmail.com' type="text" id="emailOrUsername" value={emailOrUsername} onChange={(e) => setEmailOrUsername(e.target.value)} className="text-black border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
           <div className="mb-6">
             <label htmlFor="password" className="block text-white font-md mb-2">Password</label>
-            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="appearance-none border text-black rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
+            <input placeholder="******"type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="appearance-none border text-black rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
             <a href="#" className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800">Forgot Password?</a>
           </div>
           <div className="flex items-center justify-center">
             <button>
-              <NavLink to='/dashboard' className="text-lg px-4 transition duration-400 ease-out hover:ease-out py-3 mx-4 leading-none border rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-amber-400 mt-2 lg:mt-0"
+              <NavLink to='/home' className="text-lg px-4 transition duration-400 ease-out hover:ease-out py-3 mx-4 leading-none border rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-amber-400 mt-2 lg:mt-0"
               >Login</NavLink>
             </button>
           </div>

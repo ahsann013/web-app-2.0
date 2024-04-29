@@ -23,15 +23,13 @@ function App() {
 
   return (
     <>
-     
-
-
+    
         <Routes>
           <Route exact path='/' element={<Homepage />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/vehicle' element={<Vehicle />} />
           <Route path='/login' element={<LoginPage />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+   
           <Route path='/history' element={<RideHistory/>} />
           <Route path='/bikes' element={<Bikes/>} />
           <Route path='/livetracker' element={<MapContainer/>} />
