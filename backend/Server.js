@@ -6,7 +6,7 @@ const CustomerInfo = require('./models/userData');
 const PaymentHistory = require('./models/paymentHistory');
 const TripHistory = require('./models/tripHistory');
 const  sequelize = require('./models/sequelize');
-
+const dotenv = require('dotenv');
 
 const express = require('express');
 const { client, connectToDatabase } = require('./connection');

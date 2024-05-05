@@ -8,7 +8,7 @@ const BikeFleet = sequelize.define('BikeFleet', {
         type: DataTypes.STRING,
         primaryKey: true
     },
-    BikeId: DataTypes.STRING,
+    
     AvailabilityStatus: DataTypes.BOOLEAN
 });
 

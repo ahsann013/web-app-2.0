@@ -19,7 +19,7 @@ const Sidebar = () => {
 
   const sidebarItems = [
     { text: 'Overview', icon: <HomeIcon className="text-blue-500" />, link: '/home' },
-    { text: 'Live Tracking', icon: <MapIcon className="text-green-500" />, link: '/livetracker' },
+    { text: 'Live Tracking', icon: <MapIcon className="text-green-500" />, link: '/maps' },
     { text: 'EV Management', icon: <ElectricCarIcon className="text-yellow-500" />, link: '/bikes' },
     { text: 'Rides History', icon: <HistoryIcon className="text-red-500" />, link: '/history' },
     { text: 'Users', icon: <GroupIcon className="text-purple-500" />, link: '/users' },
@@ -29,7 +29,7 @@ const Sidebar = () => {
     <div className="flex items-center bg-black p-2 rounded-lg">
       <div className='text-black bg-amber-400 rounded-full'>
       <IconButton onClick={toggleDrawer(true)} className="text-white">
-        <MenuIcon className='0' /> <div className=' pl-2 text-lg'>Menu</div>
+        <MenuIcon className='0' /> <div className='text-lg'></div>
       </IconButton>
       </div>
       <div className="flex-grow text-amber-400 text-2xl font-bold text-center mx-4">

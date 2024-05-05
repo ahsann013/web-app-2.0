@@ -9,14 +9,14 @@ import Vehicle from './Pages/Vehicle'
 import Homepage from './Pages/Homepage'
 
 import LoginPage from './Pages/LoginPage'
-
+import LiveTracking from './components/LiveTracking';
 import Dashboard from './components/DashboardMain'
 import MapContainer from './components/MapContainer';
 import RideHistory from './components/RideHistory';
 import Bikes from './components/Bikes';
 import Home from './components/Home';
 import UserData from './components/UserData';
-import AzureMaps from './components/MapContainer';
+
 
 
 function App() {
@@ -33,7 +33,8 @@ function App() {
    
           <Route path='/history' element={<RideHistory/>} />
           <Route path='/bikes' element={<Bikes/>} />
-          <Route path='/livetracker' element={<AzureMaps/>} />
+          <Route path='/livetracker' element={<MapContainer/>} />
+          <Route path='/maps' element={<LiveTracking/>} />
           <Route path='/users' element={<UserData/>} />
           <Route path='/home' element={<Home/>} />
 
