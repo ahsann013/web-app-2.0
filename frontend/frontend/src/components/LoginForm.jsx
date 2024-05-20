@@ -38,7 +38,7 @@ const LoginForm = ({ handleSubmit }) => {
           id="username"
           value={username}
           onChange={handleUsernameChange}
-          className="text-black border border-blue-600 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+          className="text-black border border-blue-600 rounded w-full py-2 px-3 bg-white leading-tight focus:outline-none focus:shadow-outline"
           placeholder="Username"
         />
       </div>
