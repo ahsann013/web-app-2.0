@@ -27,9 +27,9 @@ const NotificationComponent = () => {
   }, []);
 
   return (
-    <div className="  flex-1 justify-start rounded-xl" >
-      <Card className="shadow-md bg-emerald-400 justify-start my-3 p-2 rounded-xl w-screen-0">
-        <CardContent className='bg-emerald-300 rounded-xl '>
+    <div className="flex-1 justify-start bg-blue-400s rounded-xl" >
+      <div className="shadow-md bg-blue-400 justify-start my-3 p-2 rounded-xl w-screen-0">
+        <CardContent className='bg-blue-300 rounded-xl '>
           <Typography variant="h5" component="h2" className="mb-4">
             Notifications
           </Typography>
@@ -50,7 +50,7 @@ const NotificationComponent = () => {
             )}
           </ul>
         </CardContent>
-      </Card>
+      </div>
     </div>
   );
 };

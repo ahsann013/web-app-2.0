@@ -31,7 +31,7 @@ const Card = ({ path, title, description }) => {
 const Home = () => {
   return (
     <DashboardContainer>
-      <div className="m-1 bg-emerald-500 rounded-md text-black p-5 ">
+      <div className="m-1 bg-blue-400 rounded-md text-black p-5 ">
     
         <h1 className="text-3xl font-bold mb-6 text-black">Overview Home</h1>
 
@@ -46,7 +46,7 @@ const Home = () => {
 
           {/* Card 2: User Data */}
           <Card
-          className = 'bg-emerald-500'
+          className = 'bg-blue-400'
             path="/users"
             title="User Data"
             description="Manage user profiles and data"

@@ -29,10 +29,10 @@ const Login = () => {
   
   return (
     <div className="flex flex-col lg:flex-row h-screen">
-      <div className="flex h-screen w-screen bg-black flex flex-col justify-center items-center p-8 lg:p-10 h-full">
+      <div className=" w-screen bg-blue-500 flex flex-col justify-center items-center p-8 lg:p-10 h-full">
         
-      <h1 className="text-white text-2xl lg:text-4xl font-bold mb-8">Welcome to Admin Portal</h1>
-      <h1 className="text-white text-2xl lg:text-4xl font-bold mb-8">Login</h1>
+      <h1 className="text-black text-3xl lg:text-4xl font-bold mb-8">Welcome to Admin Portal</h1>
+
         <LoginForm handleSubmit={handleSubmit} />
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </div>

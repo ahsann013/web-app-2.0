@@ -13,7 +13,7 @@ const DashboardContainer = ({ children }) => {
   }, [children]);
 
   return (
-    <div className={`bg-emerald-700 ${contentHeight > window.innerHeight ? 'h-screen-0 p-2' : 'h-screen p-2' }`}>
+    <div className={`bg-blue-400 ${contentHeight > window.innerHeight ? 'h-screen-0 p-2' : 'h-screen p-2' }`}>
       <SideBar />
       <div id="dashboard-content">
         {children}
