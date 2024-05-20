@@ -9,12 +9,21 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 import GroupIcon from '@mui/icons-material/Group';
 import { NavLink } from 'react-router-dom';
+import ProfileCard from './ProfileCard';
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (isOpen) => () => {
     setOpen(isOpen);
+  };
+
+  const handleSignOut = () => {
+    // Clear the token from localStorage
+    localStorage.removeItem('token');
+    // Redirect the user to the login page or perform any other necessary action
+    // For example, you can use React Router to redirect the user
+    // history.push('/login');
   };
 
   const sidebarItems = [
@@ -26,29 +35,32 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="flex items-center bg-black p-2 rounded-lg">
-      <div className='text-black bg-amber-400 rounded-full'>
-      <IconButton onClick={toggleDrawer(true)} className="text-white">
-        <MenuIcon className='0' /> <div className='text-lg'></div>
-      </IconButton>
+    <div className="flex items-center bg-emerald-900 p-2 mb-2 rounded-sm ">
+       <div className='text-black bg-white rounded-full'>
+        
+        <IconButton onClick={toggleDrawer(true)} className="text-black">
+          <MenuIcon className='0' /> <div className='text-lg'> </div>
+        </IconButton>
       </div>
-      <div className="flex-grow text-amber-400 text-2xl font-bold text-center mx-4">
+      <div className="flex-grow text-white-400 text-2xl font-bold text-center mx-4">
+   
         Dashboard
+       
       </div>
 
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-        <div className="w-64 bg-black h-screen">
-          <div className="text-white flex justify-between text-xl font-bold p-4 mt-2">Menu
+        <div className="w-64 bg-emerald-300 h-screen p-2">
+          <div className="text-black flex justify-between text-xl font-bold p-2 mt-2">Menu
             <div className="p-0 sticky">
               <IconButton onClick={toggleDrawer(false)} className="text-white">
-                <CloseIcon className='text-white absolute hover:bg-red-700 rounded-xl' />
+                <CloseIcon className='text-black absolute hover:bg-red-600 rounded-xl' />
               </IconButton>
             </div>
           </div>
           <List>
             {sidebarItems.map((item, index) => (
-              <NavLink key={index} to={item.link} className="text-white">
-                <ListItem className="hover:bg-amber-400 p-4 mb-4 hover:text-black">
+              <NavLink key={index} to={item.link} className="text-black">
+                <ListItem className="hover:bg-teal-400 p-4 mb-4 hover:text-black rounded-lg">
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} />
                 </ListItem>
@@ -56,14 +68,15 @@ const Sidebar = () => {
             ))}
           </List>
           {/* Signout NavLink */}
-          <NavLink to="/login" className="text-white fixed w-64 hover:bg-red-500 bottom-4">
-            <ListItem button className="hover: hover:bg-red-500 ">
+          <NavLink to="/" onClick={handleSignOut} className="text-black w-64">
+            <ListItem  className="hover:bg-red-500 rounded-lg">
               <ListItemIcon><LogoutIcon className='text-red-600' /></ListItemIcon>
               <ListItemText primary="Sign out" />
             </ListItem>
           </NavLink>
         </div>
       </Drawer>
+      <ProfileCard />
     </div>
   );
 };

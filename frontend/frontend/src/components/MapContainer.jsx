@@ -1,51 +1,99 @@
-import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import MapBoxSearch from './MapBoxSearch';
+import React, { useRef, useEffect, useState } from "react";
+import mapboxgl from "mapbox-gl";
+import geoJson from "./estations.json";
+import './Map.css';
+import DashboardContainer from "./DashboardContainer";
 
+mapboxgl.accessToken =
+  "pk.eyJ1IjoiYWhzYW4xODI4IiwiYSI6ImNsdmt3anRvaTBwcWkybXBwZ2VrdWdrbTQifQ.AjNjX5ywz7MkS_GSVB2mhg";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiYWhzYW4xODI4IiwiYSI6ImNsdmt3anRvaTBwcWkybXBwZ2VrdWdrbTQifQ.AjNjX5ywz7MkS_GSVB2mhg';
+const MapContainer = () => {
+  const mapContainerRef = useRef(null);
+  const [zoom, setZoom] = useState(11);
+  const [renderTime, setRenderTime] = useState(new Date());
 
-export default function MapContainer() {
-  const mapContainer = useRef(null);
-  const map = useRef(null);
-  const [lng, setLng] = useState(74.195934);
-  const [lat, setLat] = useState(31.418098);
-  const [zoom, setZoom] = useState(12);
 
   useEffect(() => {
-    if (map.current) return; // Initialize map only once
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v10',
-      center: [lng, lat],
-      zoom: zoom,
-    });
+    // Function to initialize map
+    const initializeMap = () => {
+      const img_url = 'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png';
+      const map = new mapboxgl.Map({
+        container: mapContainerRef.current,
+        style: "mapbox://styles/mapbox/streets-v10",
+        center: [74.3, 31.4605],
+        zoom: zoom,
+      });
 
-    map.current.on('move', () => {
-      setLng(map.current.getCenter().lng.toFixed(4));
-      setLat(map.current.getCenter().lat.toFixed(4));
-      setZoom(map.current.getZoom().toFixed(2));
-    });
 
-   
-    
+      const customMarkerElement = document.createElement('div');
+      customMarkerElement.className = 'custom-marker';
+      customMarkerElement.style.backgroundImage = 'url(../public/bycicle.png)';
+      customMarkerElement.style.width = '30px';
+      customMarkerElement.style.height = '30px';
+      customMarkerElement.style.backgroundSize = 'contain'; // Scale image to fit within 50x50px
 
-    // Ensure map resizes on window resize
-    window.addEventListener('resize', () => map.current.resize());
 
-    return () => {
-      window.removeEventListener('resize', () => map.current.resize());
-    }; // Cleanup function for event listener
-  }, []);
+      const marker2 = new mapboxgl.Marker({ element: customMarkerElement })
+        .setLngLat([74.32190117, 31.48020183])
+        .addTo(map);
+
+
+
+      const customMarkerElement1 = document.createElement('div');
+      customMarkerElement1.className = 'custom-marker';
+      customMarkerElement1.style.backgroundImage = 'url(../public/bycicle.png)';
+      customMarkerElement1.style.width = '30px';
+      customMarkerElement1.style.height = '30px';
+      customMarkerElement1.style.backgroundSize = 'contain'; // Scale image to fit within 50x50px
+
+
+      const marker3 = new mapboxgl.Marker({ element: customMarkerElement1 })
+        .setLngLat([74.32190117, 31.78020183])
+        .addTo(map);
+
+
+
+
+      const marker1 = new mapboxgl.Marker()
+        .setLngLat([73.22190117, 31.58020183])
+        .addTo(map);
+
+
+      // Create default markers
+      geoJson.features.map((feature) =>
+        new mapboxgl.Marker()
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(map)
+      );
+
+      // Add navigation control (the +/- zoom buttons)
+      map.addControl(new mapboxgl.NavigationControl(), "top-left");
+
+      // Clean up on unmount
+      return () => map.remove();
+    };
+
+    // Log the time when useEffect is called
+    console.log("useEffect called at:", renderTime);
+
+    // Call the initializeMap function immediately
+    initializeMap();
+
+    // Set up an interval to call initializeMap every 60 seconds
+    const interval = setInterval(initializeMap, 60000);
+
+    // Clean up interval on unmount
+    return () => clearInterval(interval);
+  }, [renderTime]); // Include renderTime in the dependency array
 
   return (
-    <div className="map-wrapper"> {/* New wrapper for consistent styling */}
-      <div className="sidebar p-2 mb-1 bg-amber-400 text-black  rounded-md">
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div>
-      <div ref={mapContainer} className="map-container  rounded-lg" style={{ width: '100%', height: '75vh' , borderRadius: '50px'  }} /> {/* Set styles for full screen */}
-    
-    </div>
+
+    <DashboardContainer>    
+       <div className="mapbox" ref={mapContainerRef} />
+    </DashboardContainer>
+
   );
-}
+};
+
+export default MapContainer;

@@ -1,43 +1,62 @@
-// Overview.js (similar structure for other components)
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import DashboardContainer from './DashboardContainer';
+import { Paperclip } from 'lucide-react';
+const TripHistory = () => {
+  const [tripHistory, setTripHistory] = useState([]);
 
-const RideHistory = () => {
+  useEffect(() => {
+    // Fetch trip history data from the API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/triphistory');
+        setTripHistory(response.data);
+      } catch (error) {
+        console.error('Error fetching trip history data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <DashboardContainer>
+    <div className="trip-history">
      
-      <h1>Ride History Section</h1>
-      <div className="container mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-6 text-white">Ride History</h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Sample Ride History Card 1 */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold mb-4">Ride #1234</h3>
-          <p className="text-gray-600">Date: January 15, 2023</p>
-          <p className="text-gray-600">Distance: 20 km</p>
-          {/* Add more details as needed */}
-        </div>
-
-        {/* Sample Ride History Card 2 */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold mb-4">Ride #5678</h3>
-          <p className="text-gray-600">Date: February 25, 2023</p>
-          <p className="text-gray-600">Distance: 15 km</p>
-          {/* Add more details as needed */}
-        </div>
-
-        {/* Sample Ride History Card 3 */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold mb-4">Ride #91011</h3>
-          <p className="text-gray-600">Date: March 10, 2023</p>
-          <p className="text-gray-600">Distance: 25 km</p>
-          {/* Add more details as needed */}
-        </div>
-      </div>
+      <TableContainer className='h-screen-1 m-auto p-auto' component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Trip ID</TableCell>
+              <TableCell>Customer ID</TableCell>
+              <TableCell>Bike ID</TableCell>
+              <TableCell>Fare</TableCell>
+              <TableCell>Departure Time</TableCell>
+              <TableCell>Arrival Time</TableCell>
+              <TableCell>Duration of Travel (min)</TableCell>
+              <TableCell>Distance Travelled (km)</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {tripHistory.map(trip => (
+              <TableRow key={trip.tripid}>
+                <TableCell>{trip.tripid}</TableCell>
+                <TableCell>{trip.customerid}</TableCell>
+                <TableCell>{trip.bikeid}</TableCell>
+                <TableCell>{trip.fare}</TableCell>
+                <TableCell>{new Date(trip.departuretime).toLocaleString()}</TableCell>
+                <TableCell>{new Date(trip.arrivaltime).toLocaleString()}</TableCell>
+                <TableCell>{trip.durationoftravel}</TableCell>
+                <TableCell>{trip.distancetravelled}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
-    </DashboardContainer>
+   </DashboardContainer>
   );
 };
 
-export default RideHistory;
+export default TripHistory;

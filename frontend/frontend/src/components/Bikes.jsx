@@ -1,10 +1,12 @@
 import React from 'react'
 import DashboardContainer from './DashboardContainer'
+import BikeShop from './BikeShop'
+import EbikeHealth from './BikeShop'
 const Bikes = () => {
   return (
     <>
     <DashboardContainer>
-        <h1>Bikes Section</h1>
+      <EbikeHealth/>
     </DashboardContainer>
     
     </>

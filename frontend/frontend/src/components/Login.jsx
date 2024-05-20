@@ -1,51 +1,43 @@
 import React, { useState } from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
 import CarImage from './CarImage';
-import { NavLink, useNavigate } from 'react-router-dom';
-
+import LoginForm from './LoginForm';
 
 const Login = () => {
-  const [emailOrUsername, setEmailOrUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
+  const handleSubmit = async (formData) => {
+    try {
+      // Call the login API endpoint
+      const response = await axios.post('http://localhost:3000/api/login', formData);
+      const { token, admin } = response.data; // Extract token and admin data from response
+      // Save token and admin data to local storage
+      localStorage.setItem('token', token);
+      localStorage.setItem('admin', JSON.stringify(admin));
+      // Redirect to the dashboard route upon successful login
+      window.location.href = '/home';
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        setError('Invalid email or password');
+      } else if (error.response && error.response.status === 500) {
+        setError('Server error. Please try again later.');
+      } else {
+        setError('An error occurred. Please try again.');
+      }
+    }
   };
-
-
+  
   return (
+    <div className="flex flex-col lg:flex-row h-screen">
+      <div className="flex h-screen w-screen bg-black flex flex-col justify-center items-center p-8 lg:p-10 h-full">
+        
+      <h1 className="text-white text-2xl lg:text-4xl font-bold mb-8">Welcome to Admin Portal</h1>
+      <h1 className="text-white text-2xl lg:text-4xl font-bold mb-8">Login</h1>
+        <LoginForm handleSubmit={handleSubmit} />
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+      </div>
 
-    <div className="flex h-screen">
-      <div className="w-1/4 bg-black flex items-center justify-center">
-        <div className='top-3 left-4 absolute'>
-          <NavLink to='/' className="text-md my-2  transition duration-400 p-1 flex mt-1 ease-out hover:ease-out border rounded-3xl text-white border-white hover:border-transparent hover:text-white hover:bg-amber-400 "
-          >
-            <ArrowBackIcon /></NavLink>
-        </div>
-        <form className="p-10" onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="emailOrUsername" className="block text-white font-md mb-2">Email or Username</label>
-            <input placeholder='example@gmail.com' type="text" id="emailOrUsername" value={emailOrUsername} onChange={(e) => setEmailOrUsername(e.target.value)} className="text-black border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-white font-md mb-2">Password</label>
-            <input placeholder="******"type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="appearance-none border text-black rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
-            <a href="#" className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800">Forgot Password?</a>
-          </div>
-          <div className="flex items-center justify-center">
-            <button>
-              <NavLink to='/home' className="text-lg px-4 transition duration-400 ease-out hover:ease-out py-3 mx-4 leading-none border rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-amber-400 mt-2 lg:mt-0"
-              >Login</NavLink>
-            </button>
-          </div>
-        </form>
-      </div>
-      <div className="w-4/5 bg-gradient-to-br from-amber-400 to-amber-800 flex items-center justify-center">
-        <CarImage />
-      </div>
     </div>
-
   );
 };
 

@@ -1,0 +1,37 @@
+{
+    "bikes": [
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "COMSATS University",
+          "description": "Univeristy on Defence Road Lahore"
+        },
+        "geometry": {
+          "coordinates": [ 74.20674,31.400500],
+          "type": "Point"
+        }
+      },
+        {
+            "type": "Feature",
+            "properties": {
+              "title": "Model Town",
+              "description": "Model Town Housing Society in the Center of City"
+            },
+            "geometry": {
+              "coordinates": [74.31673,31.47888 ],
+              "type": "Point"
+            }}
+        
+
+      
+   
+     
+     
+     
+     
+   
+   
+     
+    ],
+    "type": "BikeCollection"
+  }

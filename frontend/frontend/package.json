@@ -24,6 +24,7 @@
     "clsx": "^2.1.0",
     "dotenv": "^16.4.5",
     "embla-carousel-react": "^8.0.0",
+    "firebase": "^10.11.1",
     "lucide-react": "^0.343.0",
     "react": "^18.2.0",
     "react-azure-maps": "^1.0.0",
@@ -32,6 +33,8 @@
     "react-map-gl": "^7.1.7",
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^6.22.2",
+    "react-toastify": "^10.0.5",
+    "socket.io-client": "^4.7.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "typeface-inter": "^3.18.1"

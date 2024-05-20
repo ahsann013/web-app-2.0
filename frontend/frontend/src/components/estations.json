@@ -1,0 +1,59 @@
+{
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "COMSATS University",
+          "description": "Univeristy on Defence Road Lahore"
+        },
+        "geometry": {
+          "coordinates": [ 74.208955,31.400118],
+          "type": "Point"
+        }
+      },
+        {
+            "type": "Feature",
+            "properties": {
+              "title": "Model Town",
+              "description": "Model Town Housing Society in the Center of City"
+            },
+            "geometry": {
+              "coordinates": [74.319532,31.472306 ],
+              "type": "Point"
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {
+              "title": "Johar Town",
+              "description": "Johar Town Housing Society in the Center of City"
+            },
+            "geometry": {
+              "coordinates": [ 74.275577, 31.461453],
+              "type": "Point"
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {
+              "title": "Fortress Stadium",
+              "description": "Polo Stadium at the center of Lahore City"
+            },
+            "geometry": {
+              "coordinates": [ 74.366571 , 31.531400],
+              "type": "Point"
+            }
+          }
+
+      
+   
+     
+     
+     
+     
+   
+   
+     
+    ],
+    "type": "FeatureCollection"
+  }
