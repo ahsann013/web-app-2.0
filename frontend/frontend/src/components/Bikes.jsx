@@ -6,7 +6,7 @@ const Bikes = () => {
   return (
     <>
     <DashboardContainer>
-      <EbikeHealth/>
+     <BikeShop/>
     </DashboardContainer>
     
     </>

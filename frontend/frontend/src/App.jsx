@@ -14,6 +14,8 @@ import Bikes from './components/Bikes';
 import Home from './components/Home';
 import UserData from './components/UserData';
 import ProtectedRoute from './components/ProtectedRoute';
+import Analytics from './components/Analytics';
+import AccidentRecord from './components/AccidentRecord';
 
 
 
@@ -31,7 +33,8 @@ function App() {
           <Route path='/maps' element={<ProtectedRoute Component = {MapContainer}/>} />
           <Route path='/users' element={<ProtectedRoute Component = {UserData}/>} />
           <Route path='/home' element={<ProtectedRoute Component = {Home}/>} />
-
+          <Route path="/analytics" element={<ProtectedRoute Component ={Analytics} />}/>
+          <Route path="/accidents" element={<ProtectedRoute Component ={AccidentRecord} />}/>
          
         </Routes>
     

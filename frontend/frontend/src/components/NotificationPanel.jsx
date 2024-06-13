@@ -12,7 +12,7 @@ const NotificationComponent = () => {
     const fetchNotifications = async () => {
       try {
         // Make API call to fetch notifications
-        const response = await axios.get('http://localhost:3000/api/notifications');
+        const response = await axios.get('http://20.244.46.184:3000/api/notifications');
         // Set the notifications in the state
         setNotifications(response.data.notifications);
       } catch (error) {

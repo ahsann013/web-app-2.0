@@ -3,11 +3,11 @@ import axios from 'axios';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 
 const UserEdit = ({ open, onClose, cnic, onUserUpdated }) => {
-  const [user, setUser] = useState({ firstname: '', lastname: '', email: '', phonenumber: '', password: '' });
+  const [user, setUser] = useState({ firstname: '', lastname: '', email: '', phonenumber: '', password: '', balance: 0 }); // Include balance state
 
   useEffect(() => {
     if (cnic) {
-      axios.get(`http://localhost:3000/api/customers/${cnic}`)
+      axios.get(`http://20.244.46.184:3000/api/customers/${cnic}`)
         .then(response => {
           setUser(response.data);
         })
@@ -24,7 +24,7 @@ const UserEdit = ({ open, onClose, cnic, onUserUpdated }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/customers/${cnic}`, user);
+      const response = await axios.put(`http://20.244.46.184:3000/api/customers/${cnic}`, user);
       onUserUpdated(response.data);
       onClose();
     } catch (error) {
@@ -70,6 +70,15 @@ const UserEdit = ({ open, onClose, cnic, onUserUpdated }) => {
           type="text"
           fullWidth
           value={user.phonenumber}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          name="balance" // Add balance field
+          label="Balance"
+          type="number"
+          fullWidth
+          value={user.balance}
           onChange={handleChange}
         />
         <TextField

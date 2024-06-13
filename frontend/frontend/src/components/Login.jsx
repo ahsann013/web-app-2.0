@@ -9,7 +9,7 @@ const Login = () => {
   const handleSubmit = async (formData) => {
     try {
       // Call the login API endpoint
-      const response = await axios.post('http://localhost:3000/api/login', formData);
+      const response = await axios.post('http://20.244.46.184:3000/api/login', formData);
       const { token, admin } = response.data; // Extract token and admin data from response
       // Save token and admin data to local storage
       localStorage.setItem('token', token);

@@ -28,7 +28,7 @@ const LoginForm = ({ handleSubmit }) => {
     <form className="p-10 shadow-xl border border-blue-600 bg-blue-200 rounded-xl" onSubmit={handleFormSubmit}>
     
     <div className='text-2xl text-black flex-1 w-full mx-auto px-auto justify-center'>
-<h2 className='flex pt-1 pb-8 font-bold justify-center'>BURAAQ EV</h2>
+<h2 className='flex pt-1 pb-8 font-bold justify-center'>EcoDrive</h2>
 <h1 className="flex text-black justify-center text-xl lg:text-2xl font-bold mb-8 ">Login</h1>
     </div>
       <div className="mb-4">

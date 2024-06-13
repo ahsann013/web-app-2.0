@@ -1,93 +1,127 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
-import { Add } from '@mui/icons-material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 
-const AddUser = ({ open, onClose, onAddUser }) => {
-  const [newUserData, setNewUserData] = useState({
-    firstname: '',
-    lastname: '',
-    cnic: '',
-    phonenumber: '',
-    email: ''
+const AddUserForm = ({ open, onClose, onUserAdded }) => {
+  const [newUser, setNewUser] = useState({
+    CNIC: '',
+    FirstName: '',
+    LastName: '',
+    PhoneNumber: '',
+    Email: '',
+    Balance: 0,
+    Password: ''
   });
+  const [error, setError] = useState('');
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewUserData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNewUser({ ...newUser, [name]: value });
   };
 
   const handleAddUser = async () => {
     try {
-      await axios.post('http://localhost:3000/api/customers', newUserData);
-      onAddUser();
+      const response = await axios.post('http://20.244.46.184:3000/api/customers', newUser);
+      onUserAdded(response.data); // Notify parent component with the added user data
       onClose();
     } catch (error) {
       console.error('Error adding user:', error);
+      setError(error.response ? error.response.data.error : error.message);
     }
   };
 
+  const handleClose = () => {
+    onClose();
+    setError('');
+    setNewUser({
+      CNIC: '',
+      FirstName: '',
+      LastName: '',
+      PhoneNumber: '',
+      Email: '',
+      Balance: 0,
+      Password: ''
+    });
+  };
+
   return (
-    <div className='flex flex-1 justify-end mr'>
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle className=''>Add User</DialogTitle>
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>Add New User</DialogTitle>
       <DialogContent>
+        <DialogContentText>
+          Fill out the details below to add a new user.
+        </DialogContentText>
         <TextField
-          label="First Name"
-          variant="outlined"
-          fullWidth
-          name="firstname"
-          value={newUserData.firstname}
-          onChange={handleInputChange}
-          className="mb-4"
-        />
-        <TextField
-          label="Last Name"
-          variant="outlined"
-          fullWidth
-          name="lastname"
-          value={newUserData.lastname}
-          onChange={handleInputChange}
-          className="mb-4"
-        />
-        <TextField
+          margin="dense"
+          name="CNIC"
           label="CNIC"
-          variant="outlined"
+          type="text"
           fullWidth
-          name="cnic"
-          value={newUserData.cnic}
-          onChange={handleInputChange}
-          className="mb-4"
+          value={newUser.CNIC}
+          onChange={handleChange}
         />
         <TextField
+          margin="dense"
+          name="FirstName"
+          label="First Name"
+          type="text"
+          fullWidth
+          value={newUser.FirstName}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          name="LastName"
+          label="Last Name"
+          type="text"
+          fullWidth
+          value={newUser.LastName}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          name="PhoneNumber"
           label="Phone Number"
-          variant="outlined"
+          type="text"
           fullWidth
-          name="phonenumber"
-          value={newUserData.phonenumber}
-          onChange={handleInputChange}
-          className="mb-4"
+          value={newUser.PhoneNumber}
+          onChange={handleChange}
         />
         <TextField
+          margin="dense"
+          name="Email"
           label="Email"
-          variant="outlined"
+          type="email"
           fullWidth
-          name="email"
-          value={newUserData.email}
-          onChange={handleInputChange}
-          className="mb-4"
+          value={newUser.Email}
+          onChange={handleChange}
         />
+        <TextField
+          margin="dense"
+          name="Balance"
+          label="Balance"
+          type="number"
+          fullWidth
+          value={newUser.Balance}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          name="Password"
+          label="Password"
+          type="password"
+          fullWidth
+          value={newUser.Password}
+          onChange={handleChange}
+        />
+        {error && <p className="text-red-500">{error}</p>}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={handleAddUser} color="primary">Add</Button>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleAddUser} color="primary">Add User</Button>
       </DialogActions>
     </Dialog>
-    </div>
   );
 };
 
-export default AddUser;
+export default AddUserForm;

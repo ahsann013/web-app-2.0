@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 import GroupIcon from '@mui/icons-material/Group';
+import AssessmentIcon from '@mui/icons-material/Assessment';
 import { NavLink } from 'react-router-dom';
 import ProfileCard from './ProfileCard';
 
@@ -19,11 +20,7 @@ const Sidebar = () => {
   };
 
   const handleSignOut = () => {
-    // Clear the token from localStorage
     localStorage.removeItem('token');
-    // Redirect the user to the login page or perform any other necessary action
-    // For example, you can use React Router to redirect the user
-    // history.push('/login');
   };
 
   const sidebarItems = [
@@ -31,21 +28,20 @@ const Sidebar = () => {
     { text: 'Live Tracking', icon: <MapIcon className="text-green-500" />, link: '/maps' },
     { text: 'EV Management', icon: <ElectricCarIcon className="text-yellow-500" />, link: '/bikes' },
     { text: 'Rides History', icon: <HistoryIcon className="text-red-500" />, link: '/history' },
+    { text: 'Accident Records', icon: <HistoryIcon className="text-red-500" />, link: '/accidents' }, // New link for Accident Records
     { text: 'Users', icon: <GroupIcon className="text-purple-500" />, link: '/users' },
+    { text: 'Analytics', icon: <AssessmentIcon className="text-orange-500" />, link: '/analytics' },
   ];
 
   return (
-    <div className="flex items-center bg-blue-800 p-2 mb-2 rounded-sm ">
-       <div className='text-black bg-white rounded-full'>
-        
+    <div className="flex items-center bg-blue-800 p-2 mb-2 rounded-sm">
+      <div className="text-black bg-white rounded-full">
         <IconButton onClick={toggleDrawer(true)} className="text-black">
-          <MenuIcon className='0' /> <div className='text-lg'> </div>
+          <MenuIcon className="0" />
         </IconButton>
       </div>
       <div className="flex-grow text-white-400 text-2xl font-bold text-center mx-4">
-   
         Dashboard
-       
       </div>
 
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
@@ -53,7 +49,7 @@ const Sidebar = () => {
           <div className="text-black flex justify-between text-xl font-bold p-2 mt-2">Menu
             <div className="p-0 sticky">
               <IconButton onClick={toggleDrawer(false)} className="text-white">
-                <CloseIcon className='text-black absolute hover:bg-red-600 rounded-xl' />
+                <CloseIcon className="text-black absolute hover:bg-red-600 rounded-xl" />
               </IconButton>
             </div>
           </div>
@@ -67,10 +63,9 @@ const Sidebar = () => {
               </NavLink>
             ))}
           </List>
-          {/* Signout NavLink */}
           <NavLink to="/" onClick={handleSignOut} className="text-black w-64">
-            <ListItem  className="hover:bg-red-500 rounded-lg">
-              <ListItemIcon><LogoutIcon className='text-red-600' /></ListItemIcon>
+            <ListItem className="hover:bg-red-500 rounded-lg">
+              <ListItemIcon><LogoutIcon className="text-red-600" /></ListItemIcon>
               <ListItemText primary="Sign out" />
             </ListItem>
           </NavLink>

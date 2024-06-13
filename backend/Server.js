@@ -45,8 +45,6 @@ app.post('/emit-update', (req, res) => {
 
 
 
-
-
 // Connect to PostgreSQL when the server starts
 connectToDatabase();
 
@@ -85,8 +83,6 @@ app.get('/api/bike-location', async (req, res) => {
         res.status(500).json({ success: false, message: 'Server Error' });
     }
 });
-
-
 
 
 
@@ -217,92 +213,74 @@ app.get('/api/admin/:cnic', async (req, res) => {
 ////////CRUD FOR USERS DATA
 // Create a new customer
 app.post('/api/customers', async (req, res) => {
-    const { CNIC, FirstName, LastName, PhoneNumber, Email } = req.body;
-    try {
-      const result = await client.query(
-        'INSERT INTO customerinfo (cnic, firstName, lastname, phonenumber, email) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-        [CNIC, FirstName, LastName, PhoneNumber, Email]
-      );
-      res.status(201).json(result.rows[0]);
-    } catch (error) {
-      console.error('Error creating customer:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
-  
-  // Get all customers
-  app.get('/api/customers', async (req, res) => {
-    try {
-      const result = await client.query('SELECT * FROM customerinfo');
-      res.status(200).json(result.rows);
-    } catch (error) {
-      console.error('Error getting customers:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
-  
-  // Get a single customer by CNIC
-  app.get('/api/customers/:cnic', async (req, res) => {
-    const { cnic } = req.params;
-    try {
-      const result = await client.query('SELECT * FROM customerinfo WHERE cnic = $1', [cnic]);
-      if (result.rows.length === 0) {
-        res.status(404).json({ error: 'Customer not found' });
-      } else {
-        res.status(200).json(result.rows[0]);
-      }
-    } catch (error) {
-      console.error('Error getting customer:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
-  //Update user
-  app.put('/api/customers/:cnic', async (req, res) => {
-    const { cnic } = req.params;
-    const { firstname, lastname, email, phonenumber, password } = req.body;
-  
-    try {
-      const result = await client.query(
-        'UPDATE customerinfo SET firstname = $1, lastname = $2, email = $3, phonenumber = $4, password = $5 WHERE cnic = $6 RETURNING *',
-        [firstname, lastname, email, phonenumber, password, cnic]
-      );
-      if (result.rowCount === 0) {
-        res.status(404).json({ error: 'Customer not found' });
-      } else {
-        res.json(result.rows[0]);
-      }
-    } catch (error) {
-      console.error('Error updating customer:', error.stack);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
+  const { cnic, firstname, lastname, phonenumber, email, balance, password } = req.body;
+  try {
+    const result = await client.query(
+      'INSERT INTO customerinfo (cnic, firstname, lastname, phonenumber, email, balance, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      [cnic, firstname, lastname, phonenumber, email, balance, password]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error('Error creating customer:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
+// Get all customers
+app.get('/api/customers', async (req, res) => {
+  try {
+    const result = await client.query('SELECT * FROM customerinfo');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error getting customers:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
-  
-  // Delete a customer by CNIC
-  app.delete('/api/customers/:cnic', async (req, res) => {
-    const { cnic } = req.params;
-    try {
-      // Logging the incoming CNIC for debugging
-      console.log(`Attempting to delete customer with CNIC: ${cnic}`);
-      
-      const result = await client.query('DELETE FROM customerinfo WHERE cnic = $1 RETURNING *', [cnic]);
-      
-      // Log the result for debugging
-      console.log('Delete result:', result);
-      
-      if (result.rowCount === 0) {
-        res.status(404).json({ error: 'Customer not found' });
-      } else {
-        res.status(204).send();
-      }
-    } catch (error) {
-      // Log the error stack
-      console.error('Error deleting customer:', error.stack);
-      res.status(500).json({ error: 'Internal server error' });
+// Update a customer
+app.put('/api/customers/:cnic', async (req, res) => {
+  const { cnic } = req.params;
+  const { firstname, lastname, email, phonenumber, balance, password } = req.body;
+
+  try {
+    const result = await client.query(
+      'UPDATE customerinfo SET firstname = $1, lastname = $2, email = $3, phonenumber = $4, balance = $5, password = $6 WHERE cnic = $7 RETURNING *',
+      [firstname, lastname, email, phonenumber, balance, password, cnic]
+    );
+    if (result.rowCount === 0) {
+      res.status(404).json({ error: 'Customer not found' });
+    } else {
+      res.json(result.rows[0]);
     }
-  });
+  } catch (error) {
+    console.error('Error updating customer:', error.stack);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
+// Delete a customer by CNIC
+app.delete('/api/customers/:cnic', async (req, res) => {
+  const { cnic } = req.params;
+  try {
+    // Logging the incoming CNIC for debugging
+    console.log(`Attempting to delete customer with CNIC: ${cnic}`);
+    
+    const result = await client.query('DELETE FROM customerinfo WHERE cnic = $1 RETURNING *', [cnic]);
+    
+    // Log the result for debugging
+    console.log('Delete result:', result);
+    
+    if (result.rowCount === 0) {
+      res.status(404).json({ error: 'Customer not found' });
+    } else {
+      res.status(204).send();
+    }
+  } catch (error) {
+    // Log the error stack
+    console.error('Error deleting customer:', error.stack);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
   app.get('/api/latestBikeLocation', async (req, res) => {
@@ -336,12 +314,15 @@ app.get('/api/customersearch', async (req, res) => {
     // Adjust the query to use ILIKE for case-insensitive pattern matching
     const queryText = 'SELECT * FROM customerinfo WHERE LOWER(cnic) LIKE $1';
     // Bind the search query with wildcard characters for pattern matching
-    const queryParams = [`%${cnic.toLowerCase()}%`];
+    const queryParams = [`%${cnic.toLocaleLowerCase()}%`];
 
     const { rows } = await client.query(queryText, queryParams);
     res.json(rows);
+
   } catch (error) {
+
     console.error('Error executing query:', error);
+
     res.status(500).json({ error: 'Internal server error' });
   }
 });
