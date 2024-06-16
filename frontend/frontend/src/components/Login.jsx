@@ -10,7 +10,7 @@ const Login = () => {
   const handleSubmit = async (formData) => {
     try {
       // Use the baseApiUrl for the API endpoint
-      const response = await axios.post('https://082b-20-244-46-184.ngrok-free.app/api/login', formData);
+      const response = await axios.post('http://20.244.46.184/api/login', formData);
       const { token, admin } = response.data; // Extract token and admin data from response
       // Save token and admin data to local storage
       localStorage.setItem('token', token);
