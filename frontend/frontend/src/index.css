@@ -10,6 +10,33 @@ body {
   color:white
 }
 
+ /* styles.css */
+
+.radial-gradient {
+  background: radial-gradient(circle, #26529a, #070706);
+  /* Other styles */
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 30px;
+}
+.radial-gradient-2 {
+  background: radial-gradient(circle, #26529a, #070706);
+  /* Other styles */
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+;
+  padding: 0px 0px 0px px;
+}
+ 
+ 
 .map-container {
   height: 400px;
 }

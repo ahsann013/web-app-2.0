@@ -7,7 +7,7 @@ import {
 import { Delete, Edit, Add } from '@mui/icons-material';
 import DashboardContainer from './DashboardContainer';
 import UserEdit from './UserEdit';
-import SearchBar from './Searchbar';
+
 import AddUserForm from './AddUser';
 
 const UserData = () => {

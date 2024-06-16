@@ -1,119 +1,121 @@
-import React from 'react';
+// BikeDetails.jsx
 
-const BikeDetails = ({ selectedBike }) => {
-  if (!selectedBike) {
-    return <div>No bike selected</div>;
-  }
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Card, CardContent, Typography, Paper, Grid } from '@mui/material';
+import BikeDataGraph from './BikeDataGraph';
+import CustomButton from './CustomButton';
 
-  return (
-    <div className="bg-gray-200 p-4 rounded-lg">
-      <h2 className="text-xl font-semibold mb-4">Bike Details</h2>
-      <table className="table-auto">
-        <tbody>
-          <tr>
-            <td className="font-semibold">Bike ID:</td>
-            <td>{selectedBike.BikeId}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Time Recorded:</td>
-            <td>{selectedBike.TimeRecorded}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Longitude:</td>
-            <td>{selectedBike.Longitude}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Latitude:</td>
-            <td>{selectedBike.Latitude}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Actual Battery Capacity:</td>
-            <td>{selectedBike.ActualBatteryCapacity}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Battery Box Temperature:</td>
-            <td>{selectedBike.BatteryBoxTemperature}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Battery Cycle Capacity:</td>
-            <td>{selectedBike.BatteryCycleCapacity}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Battery Temperature:</td>
-            <td>{selectedBike.BatteryTemperature}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Battery Warning:</td>
-            <td>{selectedBike.BatteryWarning ? 'Yes' : 'No'}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Current:</td>
-            <td>{selectedBike.Current}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Voltage:</td>
-            <td>{selectedBike.Voltage}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">State of Charge (SOC):</td>
-            <td>{selectedBike.SOC}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Number of Battery Cycles:</td>
-            <td>{selectedBike.NumOfBatteryCycles}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Mosfet Temperature:</td>
-            <td>{selectedBike.MosfetTemperature}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Crash State:</td>
-            <td>{selectedBike.CrashState ? 'Yes' : 'No'}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Speed:</td>
-            <td>{selectedBike.Speed}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">RPM:</td>
-            <td>{selectedBike.RPM}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Controller Temperature:</td>
-            <td>{selectedBike.Controller_Temp}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">External Temperature:</td>
-            <td>{selectedBike.External_Temp}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Controller Fault 1:</td>
-            <td>{selectedBike.ControllerFault1}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Controller Fault 2:</td>
-            <td>{selectedBike.ControllerFault2}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Controller Fault 3:</td>
-            <td>{selectedBike.ControllerFault3}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Controller Fault 4:</td>
-            <td>{selectedBike.ControllerFault4}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Unlock Code:</td>
-            <td>{selectedBike.UnlockCode}</td>
-          </tr>
-          <tr>
-            <td className="font-semibold">Occupied:</td>
-            <td>{selectedBike.Occupied ? 'Yes' : 'No'}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+const BikeDetails = ({ selectedBikeData }) => {
+    const [graphData, setGraphData] = useState({
+        speed: [],
+        voltage: [],
+        current: [],
+        soc: [],
+        labels: [],
+    });
+    const [viewAllData, setViewAllData] = useState(false);
+
+    useEffect(() => {
+        const fetchGraphData = async () => {
+            if (selectedBikeData) {
+                try {
+                    const response = await axios.get(`http://20.244.46.184:3000/api/graphbikedata/${selectedBikeData.bikeid}`);
+                    const data = response.data.data;
+
+                    const speed = data.map((item) => item.speed);
+                    const voltage = data.map((item) => item.voltage);
+                    const current = data.map((item) => item.current);
+                    const soc = data.map((item) => item.soc);
+                    const labels = data.map((item) => new Date(item.timerecorded));
+
+                    setGraphData({ speed, voltage, current, soc, labels });
+                } catch (error) {
+                    console.error('Error fetching graph data:', error);
+                }
+            }
+        };
+
+        fetchGraphData();
+    }, [selectedBikeData]);
+
+    const toggleViewAllData = () => {
+        setViewAllData(!viewAllData);
+    };
+
+    return (
+        <Grid item xs={9}>
+            {selectedBikeData && (
+                <Card>
+                    <CardContent>
+                        <Typography variant="h5" component="div" gutterBottom>
+                            Selected Bike Data
+                        </Typography>
+
+                        {/* Graphs */}
+                        {!viewAllData && (
+                            <div className=''>
+                                <Typography variant="h6">Graphs</Typography>
+                                <div className="graph-container grid grid-cols-2 gap-3">
+                                    <Paper elevation={3} className="graph">
+                                        <BikeDataGraph
+                                            labels={graphData.labels}
+                                            data={graphData.speed}
+                                            title="Speed"
+                                        />
+                                    </Paper>
+                                    <Paper elevation={3} className="graph">
+                                        <BikeDataGraph
+                                            labels={graphData.labels}
+                                            data={graphData.voltage}
+                                            title="Voltage"
+                                        />
+                                    </Paper>
+                                    <Paper elevation={3} className="graph">
+                                        <BikeDataGraph
+                                            labels={graphData.labels}
+                                            data={graphData.current}
+                                            title="Current"
+                                        />
+                                    </Paper>
+                                    <Paper elevation={3} className="graph">
+                                        <BikeDataGraph
+                                            labels={graphData.labels}
+                                            data={graphData.soc}
+                                            title="State of Charge (SOC)"
+                                        />
+                                    </Paper>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* View All Data Button */}
+                        <CustomButton onClick={toggleViewAllData} selected={viewAllData}>
+                            {viewAllData ? "Hide All Data" : "View All Data"}
+                        </CustomButton>
+
+                        {/* Detailed data */}
+                        {viewAllData && (
+                            <div>
+                                <Typography variant="h6">Details</Typography>
+                                <Grid container spacing={1}>
+                                    {Object.entries(selectedBikeData).map(([key, value]) => (
+                                        <Grid item xs={6} key={key}>
+                                            <Paper elevation={3} className="p-2">
+                                                <Typography variant="body2" color="textSecondary">
+                                                    {key}: {value}
+                                                </Typography>
+                                            </Paper>
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
+            )}
+        </Grid>
+    );
 };
 
 export default BikeDetails;

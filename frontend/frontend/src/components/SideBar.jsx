@@ -34,18 +34,18 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="flex items-center bg-blue-800 p-2 mb-2 rounded-sm">
+    <div className="flex items-center justify-center bg-gray-900 p-2 py-4 mb-3 ">
       <div className="text-black bg-white rounded-full">
         <IconButton onClick={toggleDrawer(true)} className="text-black">
           <MenuIcon className="0" />
         </IconButton>
       </div>
-      <div className="flex-grow text-white-400 text-2xl font-bold text-center mx-4">
+      <div className="flex-grow text-white-400 text-2xl font-bold text-center mx-8">
         Dashboard
       </div>
 
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-        <div className="w-64 bg-blue-300 h-screen p-2">
+        <div className="w-64 bg-blue-950 h-screen p-2">
           <div className="text-black flex justify-between text-xl font-bold p-2 mt-2">Menu
             <div className="p-0 sticky">
               <IconButton onClick={toggleDrawer(false)} className="text-white">

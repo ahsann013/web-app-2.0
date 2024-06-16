@@ -13,9 +13,9 @@ const DashboardContainer = ({ children }) => {
   }, [children]);
 
   return (
-    <div className={`bg-blue-400 ${contentHeight > window.innerHeight ? 'h-screen-0 p-2' : 'h-screen p-2' }`}>
+    <div className="radial-gradient-2">
       <SideBar />
-      <div id="dashboard-content">
+      <div id="dashboard-content" className="flex-grow p-2">
         {children}
       </div>
     </div>

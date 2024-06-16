@@ -10,7 +10,7 @@ const TripHistory = () => {
     // Fetch trip history data from the API
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/triphistory');
+        const response = await axios.get('http://20.244.46.184:3000/api/triphistory');
         setTripHistory(response.data);
       } catch (error) {
         console.error('Error fetching trip history data:', error);

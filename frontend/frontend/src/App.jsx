@@ -16,6 +16,7 @@ import UserData from './components/UserData';
 import ProtectedRoute from './components/ProtectedRoute';
 import Analytics from './components/Analytics';
 import AccidentRecord from './components/AccidentRecord';
+import DashHome from './Pages/Home';
 
 
 
@@ -32,9 +33,10 @@ function App() {
           <Route path='/bikes' element={<ProtectedRoute Component = {Bikes}/>} />
           <Route path='/maps' element={<ProtectedRoute Component = {MapContainer}/>} />
           <Route path='/users' element={<ProtectedRoute Component = {UserData}/>} />
-          <Route path='/home' element={<ProtectedRoute Component = {Home}/>} />
+          <Route path='/home' element={<ProtectedRoute Component = {DashHome}/>} />
           <Route path="/analytics" element={<ProtectedRoute Component ={Analytics} />}/>
           <Route path="/accidents" element={<ProtectedRoute Component ={AccidentRecord} />}/>
+          <Route path="*" element={<Navigate to="/" />} />
          
         </Routes>
     

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogTitle, Button } from '@mui/material';
+import { Dialog, DialogContent, DialogTitle } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person'; // Importing Person icon from Material-UI icons
 
 const ProfileCard = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -22,18 +23,19 @@ const ProfileCard = () => {
   };
 
   return (
-    <div>
-      <Button
+    <div className='rounded-full'>
+      <button
         onClick={handleOpenModal}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+        className="bg-white rounded-full hover:bg-blue-700 text-white font-bold  p-2  flex-1 items-center justify-center"
       >
-        View Profile
-      </Button>
+        <PersonIcon className="text-black" /> {/* Material-UI Person icon */}
+        
+      </button>
       <Dialog open={openModal} onClose={handleCloseModal}>
-        <DialogTitle>Admin Profile</DialogTitle>
-        <DialogContent>
+        <DialogTitle className="text-center">Admin Profile</DialogTitle>
+        <DialogContent className="flex justify-center">
           {adminData && (
-            <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+            <div className="max-w-md mx-auto shadow-lg rounded-lg overflow-hidden">
               <div className="flex items-center justify-center">
                 <img
                   className="h-24 w-24 rounded-full"
@@ -42,13 +44,23 @@ const ProfileCard = () => {
                 />
               </div>
               <div className="text-center mt-4">
-                <p className="text-xl font-semibold text-gray-800">{adminData.username}</p>
+                <p className="text-xl font-semibold text-gray-800">{adminData.firstname}</p>
                 <p className="text-sm font-medium text-gray-600">Administrator</p>
               </div>
               <div className="border-t border-gray-200 px-6 py-4">
-                <p className="text-sm text-gray-600">Email: {adminData.email}</p>
-                <p className="text-sm text-gray-600">CNIC: {adminData.cnic}</p>
-                {/* You can add more information here */}
+                <table className="table-auto w-full">
+                  <tbody>
+                    <tr>
+                      <td className="px-4 py-2 text-sm font-medium text-gray-600">Email:</td>
+                      <td className="px-4 py-2 text-sm text-gray-600">{adminData.email}</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2 text-sm font-medium text-gray-600">CNIC:</td>
+                      <td className="px-4 py-2 text-sm text-gray-600">{adminData.cnic}</td>
+                    </tr>
+                    {/* Add more rows for additional information */}
+                  </tbody>
+                </table>
               </div>
             </div>
           )}

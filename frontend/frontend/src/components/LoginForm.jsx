@@ -25,37 +25,42 @@ const LoginForm = ({ handleSubmit }) => {
   };
 
   return (
-    <form className="p-10 shadow-xl border border-blue-600 bg-blue-200 rounded-xl" onSubmit={handleFormSubmit}>
-    
-    <div className='text-2xl text-black flex-1 w-full mx-auto px-auto justify-center'>
-<h2 className='flex pt-1 pb-8 font-bold justify-center'>EcoDrive</h2>
-<h1 className="flex text-black justify-center text-xl lg:text-2xl font-bold mb-8 ">Login</h1>
-    </div>
+    <form className="mx-auto max-w-md shadow-lg rounded-lg overflow-hidden bg-white p-8 transform hover:scale-102 transition-transform duration-500">
+      <div className="text-center mb-6">
+        <h1 className="text-3xl font-bold text-gray-800">EcoDrive</h1>
+        <p className="text-lg text-gray-600">Admin Portal Login</p>
+      </div>
       <div className="mb-4">
-        <label htmlFor="username" className="block text-black font-md mb-2">Username</label>
+        <label htmlFor="username" className="block text-gray-800 font-medium mb-2">Username</label>
         <input
           type="text"
           id="username"
           value={username}
           onChange={handleUsernameChange}
-          className="text-black border border-blue-600 rounded w-full py-2 px-3 bg-white leading-tight focus:outline-none focus:shadow-outline"
-          placeholder="Username"
+          className="text-gray-800 border border-gray-300 rounded w-full py-2 px-3 bg-gray-100 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+          placeholder="Admin username"
         />
       </div>
       <div className="mb-6">
-        <label htmlFor="password" className="block  text-black font-md mb-2">Password</label>
+        <label htmlFor="password" className="block text-gray-800 font-medium mb-2">Password</label>
         <input
           type="password"
           id="password"
           value={password}
           onChange={handlePasswordChange}
-          className="appearance-none border-blue-600 border text-black rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          placeholder="*****"
+          className="text-gray-800 border border-gray-300 rounded w-full py-2 px-3 bg-gray-100 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+          placeholder="******"
         />
       </div>
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <div className="flex items-center justify-center">
-        <button type="submit" className="text-lg px-4 transition duration-400 ease-out hover:ease-out py-3 mx-4 leading-none border rounded-lg text-black border-blue-600 bg-white hover:border-transparent hover:text-white hover:bg-blue-400 mt-2 lg:mt-0">Login</button>
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          onClick={handleFormSubmit}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring focus:border-blue-500 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+        >
+          Login
+        </button>
       </div>
     </form>
   );
