@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import LoginForm from '../components/LoginForm';
-import '../index.css'
+import '../index.css';
+
 const Login = () => {
+
   const [error, setError] = useState('');
 
   const handleSubmit = async (formData) => {
     try {
-      // Call the login API endpoint
+      // Use the baseApiUrl for the API endpoint
       const response = await axios.post('https://082b-20-244-46-184.ngrok-free.app/api/login', formData);
       const { token, admin } = response.data; // Extract token and admin data from response
       // Save token and admin data to local storage
@@ -27,13 +29,11 @@ const Login = () => {
   };
 
   return (
-   
-    <div className=" flex radial-gradient p-8 min-h-screen justify-center items-center bg-gradient-to-r from-black to-blue-600">
-       <h1 className="text-4xl font-bold mb-4">Welcome to EcoDrive Admin Portal</h1>
+    <div className="flex radial-gradient p-8 min-h-screen justify-center items-center bg-gradient-to-r from-black to-blue-600">
+      <h1 className="text-4xl font-bold mb-4">Welcome to EcoDrive Admin Portal</h1>
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden flex">
         {/* Left Section: Info Card */}
         <div className="w-1/2 px-8 py-12 bg-black text-white">
-       
           <p className="text-lg mb-4">About EcoDrive</p>
           <p className="text-base text-gray-300">
             EcoDrive is a state-of-the-art platform for managing electric vehicle rentals efficiently and sustainably.
@@ -69,7 +69,6 @@ const Login = () => {
         </div>
       </div>
     </div>
-   
   );
 };
 

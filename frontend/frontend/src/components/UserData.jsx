@@ -98,7 +98,7 @@ const UserData = () => {
   return (
     <DashboardContainer>
       <div className='flex justify-between items-center m-2 p-1'>
-      <SearchBar onSearch={handleSearch} />
+    
       <div className='m-2 p-auto'>
       <button
         onClick={handleOpenAddUser}
