@@ -52,9 +52,6 @@ const MapContainer = () => {
         .setLngLat([74.32190117, 31.78020183])
         .addTo(map);
 
-
-
-
       const marker1 = new mapboxgl.Marker()
         .setLngLat([73.22190117, 31.58020183])
         .addTo(map);
