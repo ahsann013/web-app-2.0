@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import LoginForm from '../components/LoginForm';
 import '../index.css';
-
 const Login = () => {
 
   const [error, setError] = useState('');
-
+  const apiUrl = process.env.API_URL;
   const handleSubmit = async (formData) => {
     try {
       // Use the baseApiUrl for the API endpoint
-      const response = await axios.post('http://20.244.46.184/api/login', formData);
+      const response = await axios.post(`${apiUrl}/login`, formData);
+      // src/main.js or any other JavaScript/TypeScript file
+    // https://your-api-url.com
+
       const { token, admin } = response.data; // Extract token and admin data from response
       // Save token and admin data to local storage
       localStorage.setItem('token', token);
@@ -30,7 +32,7 @@ const Login = () => {
 
   return (
     <div className="flex radial-gradient p-8 min-h-screen justify-center items-center bg-gradient-to-r from-black to-blue-600">
-      <h1 className="text-4xl font-bold mb-4">Welcome to EcoDrive Admin Portal</h1>
+      <h1 className="text-4xl mb-4">Welcome to <span className='font-bold text-ring text-5xl'> EcoDrive </span> Admin Portal</h1>
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden flex">
         {/* Left Section: Info Card */}
         <div className="w-1/2 px-8 py-12 bg-black text-white">
@@ -60,9 +62,9 @@ const Login = () => {
         <div className="border-l border-gray-300"></div>
 
         {/* Right Section: Login Form */}
-        <div className="w-1/2 flex justify-center items-center p-8">
+        <div className="w-1/2 flex justify-center items-center p-8 bg-slate-900">
           <div className="max-w-md w-full">
-            <h2 className="text-3xl text-black font-bold mb-8 text-center">Login</h2>
+            <h2 className="text-3xl text-white font-bold mb-8 text-center">Login</h2>
             <LoginForm handleSubmit={handleSubmit} />
             {error && <p className="text-red-500 mt-4">{error}</p>}
           </div>

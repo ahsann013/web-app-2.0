@@ -89,8 +89,11 @@ const MapContainer = () => {
 
   return (
 
-    <DashboardContainer>    
+    <DashboardContainer> 
+      <div className="">
+       <h1 className='flex text-4xl pb-3 justify-center font-bold'>Live Tracking</h1>   
        <div className="mapbox" ref={mapContainerRef} />
+       </div>
     </DashboardContainer>
 
   );

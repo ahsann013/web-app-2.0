@@ -6,14 +6,14 @@ import DashboardContainer from './DashboardContainer';
 
 const AccidentRecord = () => {
   const [accidents, setAccidents] = useState([]);
-
+  const apiUrl = process.env.API_URL;
   useEffect(() => {
     fetchAccidents();
   }, []);
 
   const fetchAccidents = async () => {
     try {
-      const response = await axios.get('http://20.244.46.184:3000/api/accidents');
+      const response = await axios.get(`${apiUrl}/accidents`);
       setAccidents(response.data);
     } catch (error) {
       console.error('Error fetching accident records:', error);
@@ -23,7 +23,7 @@ const AccidentRecord = () => {
   return (
     <DashboardContainer>
     <div className="m-4">
-      <h2 className="text-2xl font-bold mb-4">Accident Records</h2>
+    <h1 className='flex text-4xl pb-3 justify-center font-bold'>Accident Records</h1>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

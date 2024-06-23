@@ -4,10 +4,10 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } 
 
 const UserEdit = ({ open, onClose, cnic, onUserUpdated }) => {
   const [user, setUser] = useState({ firstname: '', lastname: '', email: '', phonenumber: '', password: '', balance: 0 }); // Include balance state
-
+const apiUrl = process.env.API_URL;
   useEffect(() => {
     if (cnic) {
-      axios.get(`http://20.244.46.184:3000/api/customers/${cnic}`)
+      axios.get(`${apiUrl}/customers/${cnic}`)
         .then(response => {
           setUser(response.data);
         })
@@ -24,7 +24,7 @@ const UserEdit = ({ open, onClose, cnic, onUserUpdated }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.put(`http://20.244.46.184:3000/api/customers/${cnic}`, user);
+      const response = await axios.put(`${apiUrl}/customers/${cnic}`, user);
       onUserUpdated(response.data);
       onClose();
     } catch (error) {

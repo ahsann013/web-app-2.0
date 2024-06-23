@@ -1,7 +1,7 @@
 import React from 'react';
 import DashboardContainer from './DashboardContainer';
 import { Link } from 'react-router-dom';
-import NotificationPanel from './NotificationPanel';
+
 
 import { Card as MUICard, CardContent, Typography } from '@mui/material';
 
@@ -17,7 +17,7 @@ const Card = ({ path, title, description }) => {
             {description}
           </Typography>
           {/* Add a preview of the section if needed */}
-          <div className="h-24 border-t border-gray-400 mt-4 pt-4">
+          <div className="h-24  mt-4 pt-4">
             {/* Add preview content here */}
           </div>
         </CardContent>
@@ -56,7 +56,7 @@ const Home = () => {
         </div>
 
         {/* Notifications log */}
-      <NotificationPanel/>
+
       </div>
     </DashboardContainer>
   );

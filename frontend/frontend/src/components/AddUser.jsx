@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 
 const AddUserForm = ({ open, onClose, onUserAdded }) => {
+  const apiUrl = process.env.API_URL;
   const [newUser, setNewUser] = useState({
     CNIC: '',
     FirstName: '',
@@ -21,7 +22,7 @@ const AddUserForm = ({ open, onClose, onUserAdded }) => {
 
   const handleAddUser = async () => {
     try {
-      const response = await axios.post('http://20.244.46.184:3000/api/customers', newUser);
+      const response = await axios.post(`${apiUrl}/customers`, newUser);
       onUserAdded(response.data); // Notify parent component with the added user data
       onClose();
     } catch (error) {

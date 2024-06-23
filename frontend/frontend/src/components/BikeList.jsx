@@ -3,9 +3,10 @@ import IoTButton from './IoTButton'; // Adjust the import path based on your dir
 
 const BikeList = ({ bikeData, handleButtonClick, selectedBikeId, toggleShowAllData }) => {
     return (
-        <div className="p-4 text-blue bg-white shadow-md rounded-md">
-            <h2 className="text-lg text-black font-semibold mb-4">Available Bikes</h2>
+        <div className="p-4 shadow-md rounded-md">
+           
             <div className="space-y-2">
+            <h3 className="text-lg text-black font-bold mb-4">Available Bikes</h3>
                 {bikeData.map((bike) => (
                     <div key={bike.bikeid} className="flex items-center space-x-2">
                         <IoTButton

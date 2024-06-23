@@ -17,6 +17,7 @@ const Sidebar = () => {
 
   const toggleDrawer = (isOpen) => () => {
     setOpen(isOpen);
+  
   };
 
   const handleSignOut = () => {
@@ -30,7 +31,7 @@ const Sidebar = () => {
     { text: 'Rides History', icon: <HistoryIcon className="text-red-500" />, link: '/history' },
     { text: 'Accident Records', icon: <HistoryIcon className="text-red-500" />, link: '/accidents' }, // New link for Accident Records
     { text: 'Users', icon: <GroupIcon className="text-purple-500" />, link: '/users' },
-    { text: 'Analytics', icon: <AssessmentIcon className="text-orange-500" />, link: '/analytics' },
+
   ];
 
   return (
@@ -40,22 +41,22 @@ const Sidebar = () => {
           <MenuIcon className="0" />
         </IconButton>
       </div>
-      <div className="flex-grow text-white-400 text-2xl font-bold text-center mx-8">
+      <div className="flex-grow text-white-400 text-3xl font-bold text-center mx-8">
         Dashboard
       </div>
 
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
         <div className="w-64 bg-blue-950 h-screen p-2">
-          <div className="text-black flex justify-between text-xl font-bold p-2 mt-2">Menu
+          <div className="text-white flex justify-between text-xl font-bold p-2 mt-2">Menu
             <div className="p-0 sticky">
               <IconButton onClick={toggleDrawer(false)} className="text-white">
-                <CloseIcon className="text-black absolute hover:bg-red-600 rounded-xl" />
+                <CloseIcon className="text-white+ absolute hover:bg-red-600 rounded-xl" />
               </IconButton>
             </div>
           </div>
           <List>
             {sidebarItems.map((item, index) => (
-              <NavLink key={index} to={item.link} className="text-black">
+              <NavLink key={index} to={item.link} className="text-white">
                 <ListItem className="hover:bg-teal-400 p-4 mb-4 hover:text-black rounded-lg">
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} />
@@ -63,7 +64,7 @@ const Sidebar = () => {
               </NavLink>
             ))}
           </List>
-          <NavLink to="/" onClick={handleSignOut} className="text-black w-64">
+          <NavLink to="/" onClick={handleSignOut} className="text-white w-64">
             <ListItem className="hover:bg-red-500 rounded-lg">
               <ListItemIcon><LogoutIcon className="text-red-600" /></ListItemIcon>
               <ListItemText primary="Sign out" />

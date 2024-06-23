@@ -1,12 +1,10 @@
-// BikeDetails.jsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, CardContent, Typography, Paper, Grid } from '@mui/material';
 import BikeDataGraph from './BikeDataGraph';
 import CustomButton from './CustomButton';
 
 const BikeDetails = ({ selectedBikeData }) => {
+    const apiUrl = process.env.API_URL;
     const [graphData, setGraphData] = useState({
         speed: [],
         voltage: [],
@@ -20,7 +18,7 @@ const BikeDetails = ({ selectedBikeData }) => {
         const fetchGraphData = async () => {
             if (selectedBikeData) {
                 try {
-                    const response = await axios.get(`http://20.244.46.184:3000/api/graphbikedata/${selectedBikeData.bikeid}`);
+                    const response = await axios.get(`${apiUrl}/graphbikedata/${selectedBikeData.bikeid}`);
                     const data = response.data.data;
 
                     const speed = data.map((item) => item.speed);
@@ -44,77 +42,73 @@ const BikeDetails = ({ selectedBikeData }) => {
     };
 
     return (
-        <Grid item xs={9}>
+        <div className="w-full md:w-3/4 lg:w-2/3">
             {selectedBikeData && (
-                <Card>
-                    <CardContent>
-                        <Typography variant="h5" component="div" gutterBottom>
-                            Selected Bike Data
-                        </Typography>
+                <div className="shadow-md rounded-lg p-6">
+                    <div className="mb-4">
+                        <h2 className="text-2xl text-b font-semibold">Selected Bike Data</h2>
+                    </div>
 
-                        {/* Graphs */}
-                        {!viewAllData && (
-                            <div className=''>
-                                <Typography variant="h6">Graphs</Typography>
-                                <div className="graph-container grid grid-cols-2 gap-3">
-                                    <Paper elevation={3} className="graph">
-                                        <BikeDataGraph
-                                            labels={graphData.labels}
-                                            data={graphData.speed}
-                                            title="Speed"
-                                        />
-                                    </Paper>
-                                    <Paper elevation={3} className="graph">
-                                        <BikeDataGraph
-                                            labels={graphData.labels}
-                                            data={graphData.voltage}
-                                            title="Voltage"
-                                        />
-                                    </Paper>
-                                    <Paper elevation={3} className="graph">
-                                        <BikeDataGraph
-                                            labels={graphData.labels}
-                                            data={graphData.current}
-                                            title="Current"
-                                        />
-                                    </Paper>
-                                    <Paper elevation={3} className="graph">
-                                        <BikeDataGraph
-                                            labels={graphData.labels}
-                                            data={graphData.soc}
-                                            title="State of Charge (SOC)"
-                                        />
-                                    </Paper>
+                    {/* Graphs */}
+                    {!viewAllData && (
+                        <div>
+                            <h3 className="text-xl mb-3">Graphs</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="bg-white p-4 rounded-lg shadow-md">
+                                    <BikeDataGraph
+                                        labels={graphData.labels}
+                                        data={graphData.speed}
+                                        title="Speed"
+                                    />
+                                </div>
+                                <div className="bg-white p-4 rounded-lg shadow-md">
+                                    <BikeDataGraph
+                                        labels={graphData.labels}
+                                        data={graphData.voltage}
+                                        title="Voltage"
+                                    />
+                                </div>
+                                <div className="bg-white p-4 rounded-lg shadow-md">
+                                    <BikeDataGraph
+                                        labels={graphData.labels}
+                                        data={graphData.current}
+                                        title="Current"
+                                    />
+                                </div>
+                                <div className="bg-white p-4 rounded-lg shadow-md">
+                                    <BikeDataGraph
+                                        labels={graphData.labels}
+                                        data={graphData.soc}
+                                        title="State of Charge (SOC)"
+                                    />
                                 </div>
                             </div>
-                        )}
+                        </div>
+                    )}
 
-                        {/* View All Data Button */}
-                        <CustomButton onClick={toggleViewAllData} selected={viewAllData}>
-                            {viewAllData ? "Hide All Data" : "View All Data"}
-                        </CustomButton>
+                    {/* View All Data Button */}
+                    <CustomButton onClick={toggleViewAllData} selected={viewAllData}>
+                        {viewAllData ? "Hide All Data" : "View All Data"}
+                    </CustomButton>
 
-                        {/* Detailed data */}
-                        {viewAllData && (
-                            <div>
-                                <Typography variant="h6">Details</Typography>
-                                <Grid container spacing={1}>
-                                    {Object.entries(selectedBikeData).map(([key, value]) => (
-                                        <Grid item xs={6} key={key}>
-                                            <Paper elevation={3} className="p-2">
-                                                <Typography variant="body2" color="textSecondary">
-                                                    {key}: {value}
-                                                </Typography>
-                                            </Paper>
-                                        </Grid>
-                                    ))}
-                                </Grid>
+                    {/* Detailed data */}
+                    {viewAllData && (
+                        <div>
+                            <h3 className="text-xl mt-4 mb-3">Details</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {Object.entries(selectedBikeData).map(([key, value]) => (
+                                    <div key={key} className="bg-white p-4 rounded-lg shadow-md">
+                                        <p className="text-sm text-gray-600">
+                                            <span className="font-semibold">{key}:</span> {value}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
-                        )}
-                    </CardContent>
-                </Card>
+                        </div>
+                    )}
+                </div>
             )}
-        </Grid>
+        </div>
     );
 };
 

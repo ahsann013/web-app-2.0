@@ -19,14 +19,13 @@ import AccidentRecord from './components/AccidentRecord';
 import DashHome from './Pages/Home';
 
 
-
 function App() {
 
 
   
   return (
     <>
-    
+   
         <Routes>
           <Route exact path='/' element={<ProtectedRoute Component = {Login}/> } />
           <Route path='/history' element={<ProtectedRoute Component = {RideHistory}/>} />
@@ -39,8 +38,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
          
         </Routes>
-    
-
+  
 
     </>
   )

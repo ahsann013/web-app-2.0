@@ -5,13 +5,14 @@ import DashboardContainer from './DashboardContainer';
 import { Paperclip } from 'lucide-react';
 const TripHistory = () => {
   const [tripHistory, setTripHistory] = useState([]);
-
+const api_url = process.env.API_URL;
   useEffect(() => {
     // Fetch trip history data from the API
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://20.244.46.184:3000/api/triphistory');
+        const response = await axios.get(`${api_url}/triphistory`);
         setTripHistory(response.data);
+        console.log(process.env.API_URL);
       } catch (error) {
         console.error('Error fetching trip history data:', error);
       }
@@ -23,7 +24,7 @@ const TripHistory = () => {
   return (
     <DashboardContainer>
     <div className="trip-history">
-     
+    <h1 className='flex text-4xl pb-3 justify-center font-bold'>Trip History</h1>
       <TableContainer className='h-screen-1 m-auto p-auto' component={Paper}>
         <Table>
           <TableHead>
