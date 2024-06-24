@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginForm = ({ handleSubmit }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
   const handleUsernameChange = (e) => {
@@ -13,6 +15,10 @@ const LoginForm = ({ handleSubmit }) => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setError('');
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleFormSubmit = (e) => {
@@ -41,16 +47,26 @@ const LoginForm = ({ handleSubmit }) => {
           placeholder="Admin username"
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 relative">
         <label htmlFor="password" className="block text-gray-800 font-medium mb-2">Password</label>
         <input
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           id="password"
           value={password}
           onChange={handlePasswordChange}
           className="text-gray-800 border border-gray-300 rounded w-full py-2 px-3 bg-gray-100 leading-tight focus:outline-none focus:ring focus:border-blue-500"
           placeholder="******"
         />
+        <div className="absolute text-gray-600 text-xl inset-y-2 right-0 pr-2 pt-8 flex items-center  leading-5">
+          <button
+            type="button"
+            onClick={handleTogglePasswordVisibility}
+            className="focus:outline-none"
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </div>
+        
       </div>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <div className="flex justify-center">
