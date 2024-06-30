@@ -41,14 +41,23 @@ const BikeShop = () => {
     }, [selectedBikeId, showAllData]);
 
     const handleButtonClick = (bikeid) => {
-        setSelectedBikeId(bikeid);
-        setSelectedBikeData(bikeData.find((bike) => bike.bikeid === bikeid));
-        setShowAllData(false); // Reset showAllData when selecting a new bike
-        setDetailedBikeData([]); // Clear detailedBikeData when selecting a new bike
+        if (selectedBikeId === bikeid) {
+            // If the clicked bike is already selected, deselect it
+            setSelectedBikeId(null);
+            setSelectedBikeData(null);
+            setShowAllData(false);
+            setDetailedBikeData([]);
+        } else {
+            // Otherwise, select the clicked bike
+            setSelectedBikeId(bikeid);
+            setSelectedBikeData(bikeData.find((bike) => bike.bikeid === bikeid));
+            setShowAllData(false); // Reset showAllData when selecting a new bike
+            setDetailedBikeData([]); // Clear detailedBikeData when selecting a new bike
+        }
     };
 
     const toggleShowAllData = () => {
-        setShowAllData(!showAllData);
+        setShowAllData(fetchDetailedBikeData());
     };
 
     const handlePublish = async (bikeid) => {
@@ -172,6 +181,7 @@ const BikeShop = () => {
                         showAllData={showAllData}
                         detailedBikeData={detailedBikeData}
                     />
+               
                 </div>
             </div>
         </>

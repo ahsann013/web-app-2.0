@@ -3,7 +3,7 @@
 import React from 'react';
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryLabel, VictoryLegend } from 'victory';
 
-const BikeDataGraph = ({ labels, data, title }) => {
+const BikeDataGraph = ({ labels, data, title,tickCount }) => {
     // Format labels if needed, assuming labels are already in correct format
     // data should be an array of numeric values
 
@@ -19,6 +19,7 @@ const BikeDataGraph = ({ labels, data, title }) => {
                 style={{
                     tickLabels: { fontSize: 8, padding: 5 },
                 }}
+                tickCount={tickCount && tickCount} // Set tickCount for the x-axis
             />
 
             <VictoryAxis

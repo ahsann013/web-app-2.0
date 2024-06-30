@@ -17,6 +17,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Analytics from './components/Analytics';
 import AccidentRecord from './components/AccidentRecord';
 import DashHome from './Pages/Home';
+import LiveTracking from './components/LiveTracking';
 
 
 function App() {

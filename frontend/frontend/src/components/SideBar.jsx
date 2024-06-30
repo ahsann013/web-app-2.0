@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 import GroupIcon from '@mui/icons-material/Group';
-import AssessmentIcon from '@mui/icons-material/Assessment';
+import AssessmentIcon from '@mui/icons-material/Assessment'; // Import icon for Analytics
 import { NavLink } from 'react-router-dom';
 import ProfileCard from './ProfileCard';
 
@@ -17,7 +17,6 @@ const Sidebar = () => {
 
   const toggleDrawer = (isOpen) => () => {
     setOpen(isOpen);
-  
   };
 
   const handleSignOut = () => {
@@ -29,13 +28,13 @@ const Sidebar = () => {
     { text: 'Live Tracking', icon: <MapIcon className="text-green-500" />, link: '/maps' },
     { text: 'EV Management', icon: <ElectricCarIcon className="text-yellow-500" />, link: '/bikes' },
     { text: 'Rides History', icon: <HistoryIcon className="text-red-500" />, link: '/history' },
-    { text: 'Accident Records', icon: <HistoryIcon className="text-red-500" />, link: '/accidents' }, // New link for Accident Records
+    { text: 'Accident Records', icon: <HistoryIcon className="text-red-500" />, link: '/accidents' },
     { text: 'Users', icon: <GroupIcon className="text-purple-500" />, link: '/users' },
-
+    { text: 'Analytics', icon: <AssessmentIcon className="text-orange-500" />, link: '/analytics' }, // New link for Analytics
   ];
 
   return (
-    <div className="flex items-center justify-center bg-gray-900 p-2 py-4 mb-3 ">
+    <div className="flex items-center justify-center bg-gray-900 p-2 py-4 mb-3">
       <div className="text-black bg-white rounded-full">
         <IconButton onClick={toggleDrawer(true)} className="text-black">
           <MenuIcon className="0" />
@@ -47,7 +46,8 @@ const Sidebar = () => {
 
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
         <div className="w-64 bg-blue-950 h-screen p-2">
-          <div className="text-white flex justify-between text-xl font-bold p-2 mt-2">Menu
+          <div className="text-white flex justify-between text-xl font-bold p-2 mt-2">
+            Menu
             <div className="p-0 sticky">
               <IconButton onClick={toggleDrawer(false)} className="text-white">
                 <CloseIcon className="text-white+ absolute hover:bg-red-600 rounded-xl" />

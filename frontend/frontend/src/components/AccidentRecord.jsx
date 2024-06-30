@@ -6,7 +6,8 @@ import DashboardContainer from './DashboardContainer';
 
 const AccidentRecord = () => {
   const [accidents, setAccidents] = useState([]);
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.API_URL;  // Adjusted to REACT_APP_API_URL for Create React App
+
   useEffect(() => {
     fetchAccidents();
   }, []);
@@ -22,42 +23,31 @@ const AccidentRecord = () => {
 
   return (
     <DashboardContainer>
-    <div className="m-4">
-    <h1 className='flex text-4xl pb-3 justify-center font-bold'>Accident Records</h1>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Bike ID</TableCell>
-              <TableCell>Time Recorded</TableCell>
-              <TableCell>Trip ID</TableCell>
-              <TableCell>Customer Name</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Phone Number</TableCell>
-              <TableCell>Departure Time</TableCell>
-            
-         
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {accidents.map((accident, index) => (
-              <TableRow key={index}>
-                <TableCell>{accident.bikeid}</TableCell>
-                <TableCell>{new Date(accident.timerecorded).toLocaleString()}</TableCell>
-                <TableCell>{accident.tripid}</TableCell>
-                <TableCell>{`${accident.firstname} ${accident.lastname}`}</TableCell>
-                <TableCell>{accident.email}</TableCell>
-                <TableCell>{accident.phonenumber}</TableCell>
-                <TableCell>{new Date(accident.departuretime).toLocaleString()}</TableCell>
-             
-               
-            
+      <div className="m-4">
+        <h1 className='flex text-4xl pb-3 justify-center font-bold'>Accident Records</h1>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Bike ID</TableCell>
+                <TableCell>Time Recorded</TableCell>
+                <TableCell>Longitude</TableCell>
+                <TableCell>Latitude</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+            </TableHead>
+            <TableBody>
+              {accidents.map((accident, index) => (
+                <TableRow key={index}>
+                  <TableCell>{accident.bikeid}</TableCell>
+                  <TableCell>{new Date(accident.timerecorded).toLocaleString()}</TableCell>
+                  <TableCell>{accident.longitude}</TableCell>
+                  <TableCell>{accident.latitude}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
     </DashboardContainer>
   );
 };
