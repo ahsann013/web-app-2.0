@@ -134,22 +134,7 @@ app.post('/api/publish-message/', (req, res) => {
     console.error(`[${currentTime}] Device error:`, error);
   }
 });
- /* io.on('connection', (socket) => {
-    console.log('A user connected');
 
-    // Listen for updates from the database
-    const query = client.query('LISTEN bikedata_update'); // Use client.query instead of pool.query
-    client.on('notification', (data) => {
-      console.log('Received notification:', data.payload);
-      io.emit('bikedata_update', data.payload);
-    });
-
-    // Handle disconnection
-    socket.on('disconnect', () => {
-      console.log('User disconnected');
-    });
-  });
-*/
 
 
 app.get('/api/stations', (req, res) => {
@@ -333,44 +318,7 @@ app.get('/api/triphistory', async (req, res) => {
   }
 });*/
 
-// app.get('/api/databytrip', async (req, res) => {
-//   const { tripId } = req.query;
 
-//   if (!tripId) {
-//     return res.status(400).json({ success: false, message: 'Trip ID is required' });
-//   }
-
-//   try {
-//     // Query to get the bike ID and time frame from the TripHistory table
-//     const tripQuery = `
-//       SELECT BikeId, DepartureTime, ArrivalTime
-//       FROM TripHistory
-//       WHERE TripId = $1
-//     `;
-//     const tripResult = await client.query(tripQuery, [tripId]);
-
-//     if (tripResult.rows.length === 0) {
-//       return res.status(404).json({ success: false, message: 'Trip not found' });
-//     }
-
-//     const { BikeId, DepartureTime, ArrivalTime } = tripResult.rows[0];
-
-//     // Query to get the bike data within the time frame for the specific bike
-//     const bikeDataQuery = `
-//       SELECT *
-//       FROM BikeData
-//       WHERE BikeId = $1 AND
-//         DATE_TRUNC('second', TimeRecorded) BETWEEN $2 AND $3
-//       ORDER BY TimeRecorded
-//     `;
-//     const bikeDataResult = await client.query(bikeDataQuery, [BikeId, DepartureTime, ArrivalTime]);
-
-//     return res.status(200).json({ success: true, data: bikeDataResult });
-//   } catch (error) {
-//     console.error('Error fetching data by trip:', error);
-//     return res.status(500).json({ success: false, message: 'Internal server error' });
-//   }
-// });
 
 app.get('/api/databytrip', async (req, res) => {
   const { tripId } = req.query;
