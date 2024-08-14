@@ -22,55 +22,9 @@ connectToDatabase();
 app.use(express.json()); // Parse JSON requests
  // Enable CORS
 
-
-
 app.use(cors()); // Enable CORS
 // Initialize AWS IoT device with connection credentials
 
-/*const device = awsIot.device({
-  keyPath: 'LocalSubscriber/private.pem',
-  certPath: 'LocalSubscriber/certificate.pem',
-  caPath: 'LocalSubscriber/AmazonRootCA1.pem',
-  clientId: 'iotconsole-fd57b034-119f-46b7-9958-a5b19e7763fa',
-  host: 'ak38rjvdc583n-ats.iot.eu-north-1.amazonaws.com'
-});
-
-device.on('connect', () => {
-  console.log('Connected to AWS IoT');
-});
-
-device.on('error', (error) => {
-  const currentTime = new Date().toLocaleString();
-  console.error(`[${currentTime}] Device error:`, error);
-});
-
-
-
-app.post('/api/publish-message/', (req, res) => {
-  // Extract bike ID and status from request body
-  const { BikeID } = req.body;
-  const Status = 'False'; // Set status to false
-
-  // Construct message object
-  const message = {
-      BikeID,
-      Status
-  };
-
-  // Convert message to JSON string
-  const messageJson = JSON.stringify(message);
-
-  // Publish message to IoT Core topic
-  device.publish('aws/things/FYP_Device1/Control', messageJson, (err) => {
-      if (err) {
-          console.error('Error publishing message:', err);
-          res.status(500).json({ error: 'Failed to publish message to AWS IoT Core' });
-      } else {
-          console.log('Message published successfully');
-          res.status(200).json({ message: 'Message published successfully' });
-      }
-  });
-});*/
 app.post('/api/publish-message/', (req, res) => {
   try {
     // Extract bike ID and status from request body
